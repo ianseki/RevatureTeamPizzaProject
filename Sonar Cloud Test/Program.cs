@@ -5,3 +5,4 @@ Console.WriteLine("I got a bad feeling about this");
 Console.WriteLine("Here's looking at you kid");
 Console.WriteLine("HAIL TO THE FLAIL!!");
 Console.WriteLine("IT'S THE FINAL COUNTDOWN");
+Console.WriteLine("DOMOARIGATO MR ROBOTO!!");

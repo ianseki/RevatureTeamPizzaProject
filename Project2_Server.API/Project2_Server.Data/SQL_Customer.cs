@@ -23,7 +23,7 @@ namespace Project2_Server.Data
             using SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
             await DB_connection.OpenAsync();
 
-            string DB_commandText = "";
+            string DB_commandText = @"";
 
             using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
             DB_command.Parameters.AddWithValue("@INPUT_CustomerID", INPUT_CustomerID);
@@ -32,7 +32,7 @@ namespace Project2_Server.Data
 
             if (DB_reader.HasRows == false)
             {
-                API_PROP_logger.LogInformation("EXECUTED - CUSTOMER_ASYNC_getCustomerData --- RETURNED blank user");
+                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_getCustomerData --- RETURNED: blank user");
 
                 DMODEL_Customer OUTPUT_blank = new DMODEL_Customer(-1, "", "", "", "");
                 await DB_connection.CloseAsync();

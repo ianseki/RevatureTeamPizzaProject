@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Project2_Server.Data
 {
-    public class SQL_Customer : INTERFACE_Repository
+    public class SQL_Customer : INTERFACE_SQL_Customer
     {
         // FIELDS
         private readonly string DB_PROP_connectionString;
@@ -97,7 +97,7 @@ namespace Project2_Server.Data
          
         }
 
-        public async Task<bool> CUSTOMER_ASYNC_createEmployee(DMODEL_Customer INPUT_DMODEL_Customer)
+        public async Task<bool> CUSTOMER_ASYNC_createCustomer(DMODEL_Customer INPUT_DMODEL_Customer)
         {
             try
             {

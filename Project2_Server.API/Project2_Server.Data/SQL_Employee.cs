@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Project2_Server.Data
 {
-    public class SQL_Employee : INTERFACE_Repository
+    public class SQL_Employee : INTERFACE_SQL_Employee
     {
         // FIELDS
         private readonly string DB_PROP_connectionString;
@@ -97,7 +97,7 @@ namespace Project2_Server.Data
 
         }
 
-        public async Task<bool> EMPLOYEE_ASYNC_createEmployee(DMODEL_Employee INPUT_DMODEL_Employee)
+        public async Task<bool> EMPLOYEE_ASYNC_createNewEmployee(DMODEL_Employee INPUT_DMODEL_Employee)
         {
             try
             {
@@ -115,13 +115,13 @@ namespace Project2_Server.Data
                 await DB_command.ExecuteNonQueryAsync();
 
 
-                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_createEmployee --- RETURNED: Created customer {0}", INPUT_DMODEL_Employee.email);
+                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_createNewEmployee --- RETURNED: Created customer {0}", INPUT_DMODEL_Employee.email);
                 await DB_connection.CloseAsync();
                 return true;
             }
             catch (Exception e)
             {
-                API_PROP_logger.LogError("EXECUTED: EMPLOYEE_ASYNC_createEmployee --- RETURNED: FAILED to create user {0}", INPUT_DMODEL_Employee.email);
+                API_PROP_logger.LogError("EXECUTED: EMPLOYEE_ASYNC_createNewEmployee --- RETURNED: FAILED to create user {0}", INPUT_DMODEL_Employee.email);
                 API_PROP_logger.LogError(e, e.Message);
                 return false;
             }

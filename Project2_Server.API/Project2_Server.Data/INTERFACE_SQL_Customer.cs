@@ -2,7 +2,7 @@
 
 namespace Project2_Server.Data
 {
-    public interface INTERFACE_Repository
+    public interface INTERFACE_SQL_Customer
     {
         Task<DMODEL_Customer> CUSTOMER_ASYNC_getCustomerData(int INPUT_CustomerID);
         // FUNCTION:
@@ -25,7 +25,7 @@ namespace Project2_Server.Data
         //          OR
         //      If no corresponding data is found -> returns a blank user (-1, "", "", "", "")
 
-        Task<bool> CUSTOMER_ASYNC_createEmployee(DMODEL_Customer INPUT_DMODEL_Customer);
+        Task<bool> CUSTOMER_ASYNC_createCustomer(DMODEL_Customer INPUT_DMODEL_Customer);
         // FUNCTION:
         //      Inserts into the [Project2].[Customer] database a new user
         // PARAMETER (DMODEL_Customer):

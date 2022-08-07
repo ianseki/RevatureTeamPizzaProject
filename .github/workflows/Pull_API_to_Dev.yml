@@ -9,7 +9,10 @@ on:
     - cron: '25 8 * * *'
   workflow_dispatch:
   
-permissions: read-all | write-all
+env:
+  REPO: ${{ 220705-UTA-NET/Team_Pizza_P2/API }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
  my-job:
@@ -18,7 +21,5 @@ jobs:
   steps:
       - run: | 
          gh pr merge --fill
-      - env:
-          REPO: ${{ 220705-UTA-NET/Team_Pizza_P2/API }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
          

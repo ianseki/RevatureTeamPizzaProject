@@ -9,30 +9,17 @@ on:
     - cron: '25 8 * * *'
   workflow_dispatch:
   
-permissions: 
-  pull-requests: write
-  repository-projects: read
-  
-  
-
+permissions: read-all | write-all
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-#jobs:
- # my-job:
-  #  name: Push API to Development
-   # runs-on: ubuntu-latest
-    #steps:
-     # - run: | 
-      #    gh pr checkout API  
-       #   gh pr merge --base Development --fill
-       # env:
-       #   REPO: ${{ github.event.repository.name }}
-       #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         
 jobs:
-  comment:
-    runs-on: ubuntu-latest
-    steps:
-      - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
-        env:
+ my-job:
+  name: Push API to Development
+  runs-on: ubuntu-latest
+  steps:
+      - run: | 
+          gh pr checkout API  
+          gh pr merge --base Development --fill
+      - env:
+          REPO: ${{ github.event.repository.name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: ${{ github.event.issue.html_url }}
+         

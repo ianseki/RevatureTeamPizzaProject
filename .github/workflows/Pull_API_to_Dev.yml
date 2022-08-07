@@ -20,6 +20,6 @@ jobs:
           gh pr checkout API  
           gh pr merge --fill
       - env:
-          REPO: ${{ github.event.repository.name }}
+          REPO: ${{ gh repo clone 220705-UTA-NET/Team_Pizza_P2 }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          

@@ -21,11 +21,10 @@ jobs:
     name: Push API to Development
     runs-on: ubuntu-latest
     steps:
-      - env:
-          REPO: ${{ github.event.repository.name }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: | 
+      - run: | 
           gh pr checkout API  
           gh pr merge --base Development --fill
-        
+        env:
+          REPO: ${{ github.event.repository.name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          

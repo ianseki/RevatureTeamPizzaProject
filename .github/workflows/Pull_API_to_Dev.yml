@@ -20,6 +20,6 @@ jobs:
   runs-on: ubuntu-latest
   steps:
       - run: | 
-         gh pr merge --fill
+         gh pr create --head --fill
       
          

@@ -24,7 +24,8 @@ jobs:
       - env:
           REPO: ${{ github.event.repository.name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr checkout API  
+        run: | 
+          gh pr checkout API  
           gh pr merge --base Development --fill
         
          

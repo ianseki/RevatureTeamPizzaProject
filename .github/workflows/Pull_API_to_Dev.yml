@@ -17,9 +17,14 @@ env:
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
- my-job:
-  name: Push API to Development
-  runs-on: ubuntu-latest
-  steps:
-      - run: | 
-         gh pr create --repo 220705-UTA-NET/Team_Pizza_P2 --base Development --body 'Daily merge' --head API --title 'Daily Merge Auto Run'
+  my-job:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v2.4.2
+       with:
+         repository: '220705-UTA-NET/Team_Pizza_P2'
+         ref: 'API'
+     - name: Push API to Development
+       run: | 
+          gh pr create --base Development --body 'Daily merge' --head API --title 'Daily Merge Auto Run'

@@ -1,19 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Project2_Server.Data;
+using Project2_Server.Model;
 
 namespace Project2_Server.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class SQL_EmployeeController : ControllerBase
     {
-        private readonly Employees _repo;
+        private readonly SQL_Employee _repo;
 
-        public EmployeesController(Employees employees) => _repo = employees;
+        public SQL_EmployeeController(SQL_Employee repo) => _repo = repo;
 
         [HttpGet]
-        public async Task<IEnumerable<Employees>> Get()
-            => await _repo.Employees.ToListAsync();
+        public async Task<IEnumerable<DMODEL_Employee>> Get()
+            => await _repo.repo.ToListAsync();
 
         [HttpGet("id")]
         [ProducesResponseType(typeof(Employees), StatusCodes.Status200OK)]

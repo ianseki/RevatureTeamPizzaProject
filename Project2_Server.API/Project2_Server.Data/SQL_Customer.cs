@@ -10,6 +10,7 @@ namespace Project2_Server.Data
         // FIELDS
         private readonly string DB_PROP_connectionString;
         private readonly ILogger<SQL_Customer> API_PROP_logger;
+        //public readonly object Customers; // added for SQL_CustomersControllers
 
         // CONSTRUCTORS
         public SQL_Customer(string INPUT_connectionString, ILogger<SQL_Customer> INPUT_logger)

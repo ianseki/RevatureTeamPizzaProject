@@ -20,6 +20,5 @@ jobs:
   runs-on: ubuntu-latest
   steps:
       - run: | 
-         gh pr create --fill --head
-      
+         gh pr create --fill
          

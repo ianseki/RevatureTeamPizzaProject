@@ -4,9 +4,9 @@ name: API to Development Auto Push
 
 # Controls when the workflow will run
 on:
-  push:
-    branches: 
-      API
+  #push:
+  #  branches: 
+  #    API
   # Will run every day at 0:25 UTC -8 
   #schedule:
   #  - cron: '25 8 * * *'
@@ -23,5 +23,4 @@ jobs:
   runs-on: ubuntu-latest
   steps:
       - run: | 
-         gh pr create --fill
-         
+         gh pr --repo 220705-UTA-NET/Team_Pizza_P2 --base Development --body 'Daily merge' --head API --title 'Daily Merge Auto Run'

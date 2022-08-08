@@ -14,6 +14,13 @@ namespace Project2_Server.Data
         //          OR
         //      If no corresponding user is found -> returns blank user (-1, "", "", "", "")
 
+
+       // public DMODEL_Customer GetCustomer(int INPUT_CustomerID);
+
+        //public void CreateDMODEL_Customer (DMODEL_Customer customer);
+       /// public void UpdateDMODEL_Customer (int INPUT_CustomerID, DMODEL_Customer customer);   
+        //public void DeleteDMODEL_Customer (int INPUT_CustomerID);
+
         Task<DMODEL_Customer> CUSTOMER_ASYNC_checkCustomerLogin(string INPUT_Email);
         // FUNCTION:
         //      Passes the inputed email coresponds to an entry/row in the [Project2].[Customer] database

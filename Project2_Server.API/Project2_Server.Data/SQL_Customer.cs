@@ -58,6 +58,11 @@ namespace Project2_Server.Data
             }
         }
 
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<DMODEL_Customer> CUSTOMER_ASYNC_checkCustomerLogin(string INPUT_Email)
         {
             using SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);

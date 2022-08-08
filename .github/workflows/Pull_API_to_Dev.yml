@@ -5,8 +5,8 @@ name: API to Development Auto Push
 # Controls when the workflow will run
 on:
   # Will run every day at 0:25 UTC -8 
-  schedule:
-    - cron: '25 8 * * *'
+  #schedule:
+  #  - cron: '25 8 * * *'
   workflow_dispatch:
   
 env:

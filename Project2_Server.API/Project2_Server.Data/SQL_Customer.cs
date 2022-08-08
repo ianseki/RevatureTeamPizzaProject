@@ -35,7 +35,7 @@ namespace Project2_Server.Data
             {
                 DMODEL_Customer OUTPUT_blank = new DMODEL_Customer(-1, "", "", "", "");
 
-                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_getCustomerData --- RETURNED: blank user");
+                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_getCustomerData --- OUTPUT: Returns blank user");
                 await DB_connection.CloseAsync();
                 return OUTPUT_blank;
             }
@@ -51,22 +51,21 @@ namespace Project2_Server.Data
 
                 DMODEL_Customer OUTPUT_Customer = new DMODEL_Customer(WORK_CustomerID, WORK_Firstnanme, WORK_Lastname, WORK_Email, WORK_Password);
 
-                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_getCustomerData --- RETURNED: Get customer {0}", WORK_Email);
+                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_getCustomerData --- OUTPUT: Returns customer {0}", WORK_Email);
                 await DB_connection.CloseAsync();
                 return OUTPUT_Customer;
             }
         }
 
-        public async Task<DMODEL_Customer> CUSTOMER_ASYNC_checkCustomerLogin(string INPUT_Email, string INPUT_Password)
+        public async Task<DMODEL_Customer> CUSTOMER_ASYNC_checkCustomerLogin(string INPUT_Email)
         {
             using SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
             await DB_connection.OpenAsync();
 
-            string DB_commandText = @"SELECT customer_id, first_name, last_name, email, password FROM [PROJECT2].[Customer] WHERE email = @INPUT_Email AND password = @INPUT_Password;";
+            string DB_commandText = @"SELECT customer_id, first_name, last_name, email, password FROM [PROJECT2].[Customer] WHERE email = @INPUT_Email;";
 
             using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
             DB_command.Parameters.AddWithValue("@INPUT_Email", INPUT_Email);
-            DB_command.Parameters.AddWithValue("@INPUT_Password", INPUT_Password);
 
             using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
 
@@ -74,7 +73,7 @@ namespace Project2_Server.Data
             {
                 DMODEL_Customer OUTPUT_blank = new DMODEL_Customer(-1, "", "", "", "");
 
-                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- RETURNED: blank user");
+                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- OUTPUT: Returns blank user");
                 await DB_connection.CloseAsync();
                 return OUTPUT_blank;
             }
@@ -90,7 +89,7 @@ namespace Project2_Server.Data
 
                 DMODEL_Customer OUTPUT_Customer = new DMODEL_Customer(WORK_CustomerID, WORK_Firstnanme, WORK_Lastname, WORK_Email, WORK_Password);
 
-                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- RETURNED: Login verified for {0}", WORK_Email);
+                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- OUTPUT: Returns data for {0}", WORK_Email);
                 await DB_connection.CloseAsync();
                 return OUTPUT_Customer;
             }
@@ -115,13 +114,13 @@ namespace Project2_Server.Data
                 await DB_command.ExecuteNonQueryAsync();
 
 
-                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- RETURNED: Created customer {0}", INPUT_DMODEL_Customer.email);
+                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- OUTPUT: Created customer {0}", INPUT_DMODEL_Customer.email);
                 await DB_connection.CloseAsync();
                 return true;
             }
             catch (Exception e)
             {
-                API_PROP_logger.LogError("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- RETURNED: FAILED to create user {0}", INPUT_DMODEL_Customer.email);
+                API_PROP_logger.LogError("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- OUTPUT: FAILED to create user {0}", INPUT_DMODEL_Customer.email);
                 API_PROP_logger.LogError(e, e.Message);
                 return false;
             }

@@ -14,12 +14,11 @@ namespace Project2_Server.Data
         //          OR
         //      If no corresponding user is found -> returns blank user (-1, "", "", "", "")
 
-        Task<DMODEL_Customer> CUSTOMER_ASYNC_checkCustomerLogin(string INPUT_Email, string INPUT_Password);
+        Task<DMODEL_Customer> CUSTOMER_ASYNC_checkCustomerLogin(string INPUT_Email);
         // FUNCTION:
-        //      Verifies that the inputed email and password coresponds to an entry/row in the [Project2].[Customer] database
+        //      Passes the inputed email coresponds to an entry/row in the [Project2].[Customer] database
         // PARAMETER (string, string):
         //      Customer's Email
-        //      Customer's Password
         // OUTPUT (DMODEL_Customer):
         //      If valid login -> returns the customer's data row
         //          OR

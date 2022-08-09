@@ -55,30 +55,37 @@ namespace Project2_Server.Data
             }
         }
 
-        public async Task<bool> ORDER_ASYNC_createNewOrder(DMODEL_Order INPUT_DMODEL_Order)
+
+        public Task SaveChangesAsync()
         {
-            try
-            {
-                SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
-                await DB_connection.OpenAsync();
+            throw new NotImplementedException();
+        }
 
-                string DB_commandText = "INSERT INTO [PROJECT2].[Order] (time_of_order, status) VALUES (@INPUT_TimeOfOrder, INPUT_Status);";
+        public async Task<int> ORDER_ASYNC_createNewOrder(DMODEL_Order INPUT_DMODEL_Order)
+        {
+            SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
+            await DB_connection.OpenAsync();
 
-                using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
-                DB_command.Parameters.AddWithValue("@INPUT_TimeOfOrder", INPUT_DMODEL_Order.time_of_order);
-                DB_command.Parameters.AddWithValue("@INPUT_Status", INPUT_DMODEL_Order.status);
+            string DB_commandText = "INSERT INTO [PROJECT2].[Order] (time_of_order, status) VALUES (@INPUT_TimeOfOrder, INPUT_Status) SELECT SCOPE_IDENTITY();";
 
-                await DB_command.ExecuteNonQueryAsync();
+            using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
+            DB_command.Parameters.AddWithValue("@INPUT_TimeOfOrder", INPUT_DMODEL_Order.time_of_order);
+            DB_command.Parameters.AddWithValue("@INPUT_Status", INPUT_DMODEL_Order.status);
 
-                API_PROP_logger.LogInformation("EXECUTED: ORDER_ASYNC_createNewOrder --> OUTPUT: Succesfully created new order");
-                await DB_connection.CloseAsync();
-                return true;
-            }
-            catch (Exception e)
+            using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
+
+            if (DB_reader.HasRows == false)
             {
                 API_PROP_logger.LogError("EXECUTED: ORDER_ASYNC_createNewOrder --- RETURNED: FAILED to create order");
-                API_PROP_logger.LogError(e, e.Message);
-                return false;
+                return -1;
+            }
+            else
+            {
+                int WORK_generatedOrderID = DB_reader.GetInt32(0);
+
+                API_PROP_logger.LogInformation("EXECUTED: ORDER_ASYNC_createNewOrder --> OUTPUT: Succesfully created new order {0}", WORK_generatedOrderID);
+                await DB_connection.CloseAsync();
+                return WORK_generatedOrderID;
             }
         }
 

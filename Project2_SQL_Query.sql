@@ -48,12 +48,14 @@ VALUES
 -- Order
 INSERT INTO [PROJECT2].[Order] (status)
 VALUES
-(0);
+(0)
+SELECT SCOPE_IDENTITY();
 
 -- Project
 INSERT INTO [PROJECT2].[Project] (item_id, completion_status)
 VALUES
-(1, 1);
+(1, 0)
+SELECT SCOPE_IDENTITY();
 
 INSERT INTO [PROJECT2].[Project] (item_id, completion_status)
 VALUES

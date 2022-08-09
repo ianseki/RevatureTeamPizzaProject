@@ -74,6 +74,8 @@ namespace Project2_Server.API.Controllers
             }
         }
 
+        [HttpPost(" updateProjectStatus")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<bool> API_ASYNC_EMPLOYEE_updateProjectStatus(int INPUT_ProjectID, bool INPUT_ProjectStatus)
         {
             try

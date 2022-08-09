@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project2_Server.Data;
 using Project2_Server.Model;
-
-
+using System.Security.Cryptography;
 
 
 namespace Project2_Server.API.Controllers
@@ -74,12 +73,12 @@ namespace Project2_Server.API.Controllers
             }
         }
 
-        [HttpPost("INPUT_CustomerID/INPUT_DMODEL_Order/INPUT_LIST_DMODEL_Projects")]
+        [HttpPost("INPUT_CustomerID")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<bool> API_ASYNC_CUSTOMER_createNewOrder(int INPUT_CustomerID, DMODEL_Order INPUT_DMODEL_Order, List<DMODEL_Project> INPUT_LIST_DMODEL_Projects)
+        public async Task<bool> API_ASYNC_CUSTOMER_createNewOrder(int INPUT_CustomerID, [FromBody] DTO_ProjectOrder INPUT_DTO_OrderProject)
         {
             // Adds Order into [Project2].[Order] Table
-            int WORK_generatedOrderID = await API_PROP_INTERFACE_Order.ORDER_ASYNC_createNewOrder(INPUT_DMODEL_Order);
+            int WORK_generatedOrderID = await API_PROP_INTERFACE_Order.ORDER_ASYNC_createNewOrder(INPUT_DTO_OrderProject.INPUT_DMODEL_Order);
 
             if (WORK_generatedOrderID == -1)
             {
@@ -90,7 +89,7 @@ namespace Project2_Server.API.Controllers
             // Adds All Projects into [Project2].[Project] Table
             List<int> WORK_generatedProjectIDs = new List<int>();
 
-            foreach (DMODEL_Project TEMP_Project in INPUT_LIST_DMODEL_Projects)
+            foreach (DMODEL_Project TEMP_Project in INPUT_DTO_OrderProject.INPUT_LIST_DMODEL_Projects)
             {
                 int TEMP_generatedProjectID = await API_PROP_INTERFACE_Project.PROJECT_ASYNC_createNewProject(TEMP_Project);
 

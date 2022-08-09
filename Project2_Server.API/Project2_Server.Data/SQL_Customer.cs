@@ -102,7 +102,7 @@ namespace Project2_Server.Data
          
         }
 
-        public async Task<bool> CUSTOMER_ASYNC_createCustomer(DMODEL_Customer INPUT_DMODEL_Customer)
+        public async Task<bool> CUSTOMER_ASYNC_createNewCustomer(DMODEL_Customer INPUT_DMODEL_Customer)
         {
             try
             {

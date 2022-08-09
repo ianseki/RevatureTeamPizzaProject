@@ -35,7 +35,7 @@ namespace Project2_Server.Data
             {
                 DMODEL_Employee OUTPUT_blank = new DMODEL_Employee(-1, "", "", "", "");
 
-                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_getEmployeeData --- RETURNED: blank user");
+                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_getEmployeeData --- OUTPUT: Returns blank user");
                 await DB_connection.CloseAsync();
                 return OUTPUT_blank;
             }
@@ -51,22 +51,26 @@ namespace Project2_Server.Data
 
                 DMODEL_Employee OUTPUT_Employee = new DMODEL_Employee(WORK_EmployeeID, WORK_Firstnanme, WORK_Lastname, WORK_Email, WORK_Password);
 
-                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_getEmployeeData --- RETURNED: Get employee {0}", WORK_Email);
+                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_getEmployeeData --- OUTPUT: Returns employee {0} data", WORK_Email);
                 await DB_connection.CloseAsync();
                 return OUTPUT_Employee;
             }
         }
 
-        public async Task<DMODEL_Employee> EMPLOYEE_ASYNC_checkEmployeeLogin(string INPUT_Email, string INPUT_Password)
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<DMODEL_Employee> EMPLOYEE_ASYNC_checkEmployeeLogin(string INPUT_Email)
         {
             using SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
             await DB_connection.OpenAsync();
 
-            string DB_commandText = @"SELECT employee_id, first_name, last_name, email, password FROM [PROJECT2].[Employee] WHERE email = @INPUT_Email AND password = @INPUT_Password;";
+            string DB_commandText = @"SELECT employee_id, first_name, last_name, email, password FROM [PROJECT2].[Employee] WHERE email = @INPUT_Email;";
 
             using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
             DB_command.Parameters.AddWithValue("@INPUT_Email", INPUT_Email);
-            DB_command.Parameters.AddWithValue("@INPUT_Password", INPUT_Password);
 
             using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
 
@@ -74,7 +78,7 @@ namespace Project2_Server.Data
             {
                 DMODEL_Employee OUTPUT_blank = new DMODEL_Employee(-1, "", "", "", "");
 
-                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_checkEmployeeLogin --- RETURNED: blank user");
+                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_checkEmployeeLogin --- OUTPUT: Returns blank user");
                 await DB_connection.CloseAsync();
                 return OUTPUT_blank;
             }
@@ -90,7 +94,7 @@ namespace Project2_Server.Data
 
                 DMODEL_Employee OUTPUT_Employee = new DMODEL_Employee(WORK_EmployeeID, WORK_Firstnanme, WORK_Lastname, WORK_Email, WORK_Password);
 
-                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_checkEmployeeLogin --- RETURNED: Login verified for {0}", WORK_Email);
+                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_checkEmployeeLogin --- OUTPUT: Returned login passed for {0}", WORK_Email);
                 await DB_connection.CloseAsync();
                 return OUTPUT_Employee;
             }
@@ -115,13 +119,13 @@ namespace Project2_Server.Data
                 await DB_command.ExecuteNonQueryAsync();
 
 
-                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_createNewEmployee --- RETURNED: Created customer {0}", INPUT_DMODEL_Employee.email);
+                API_PROP_logger.LogInformation("EXECUTED: EMPLOYEE_ASYNC_createNewEmployee --- OUTPUT: Created customer {0}", INPUT_DMODEL_Employee.email);
                 await DB_connection.CloseAsync();
                 return true;
             }
             catch (Exception e)
             {
-                API_PROP_logger.LogError("EXECUTED: EMPLOYEE_ASYNC_createNewEmployee --- RETURNED: FAILED to create user {0}", INPUT_DMODEL_Employee.email);
+                API_PROP_logger.LogError("EXECUTED: EMPLOYEE_ASYNC_createNewEmployee --- OUTPUT: FAILED to create user {0}", INPUT_DMODEL_Employee.email);
                 API_PROP_logger.LogError(e, e.Message);
                 return false;
             }

@@ -55,31 +55,39 @@ namespace Project2_Server.Data
             }
         }
 
-        public async Task<bool> PROJECT_ASYNC_createNewProject(DMODEL_Project INPUT_DMODEL_Project)
+        public Task SaveChangesAsync()
         {
-            try
-            {
-                SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
-                await DB_connection.OpenAsync();
+            throw new NotImplementedException();
+        }
 
-                string DB_commandText = "INSERT INTO [PROJECT2].[Project] (item_id, completion_status) VALUES (@INPUT_ItemID, INPUT_Status);";
+        public async Task<int> PROJECT_ASYNC_createNewProject(DMODEL_Project INPUT_DMODEL_Project)
+        {
 
-                using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
-                DB_command.Parameters.AddWithValue("@INPUT_ItemID", INPUT_DMODEL_Project.item_id);
-                DB_command.Parameters.AddWithValue("@INPUT_Status", INPUT_DMODEL_Project.completion_status);
+            SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
+            await DB_connection.OpenAsync();
 
-                await DB_command.ExecuteNonQueryAsync();
+            string DB_commandText = "INSERT INTO [PROJECT2].[Project] (item_id, completion_status) VALUES (@INPUT_ItemID, INPUT_Status) SELECT SCOPE_IDENTITY();";
 
-                API_PROP_logger.LogInformation("EXECUTED: PROJECT_ASYNC_createNewProject --> OUTPUT: Succesfully created new project");
-                await DB_connection.CloseAsync();
-                return true;
-            }
-            catch (Exception e)
+            using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
+            DB_command.Parameters.AddWithValue("@INPUT_ItemID", INPUT_DMODEL_Project.item_id);
+            DB_command.Parameters.AddWithValue("@INPUT_Status", INPUT_DMODEL_Project.completion_status);
+
+            using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
+
+            if (DB_reader.HasRows == false)
             {
                 API_PROP_logger.LogError("EXECUTED: PROJECT_ASYNC_createNewProject --- RETURNED: FAILED to create project");
-                API_PROP_logger.LogError(e, e.Message);
-                return false;
+                return -1;
             }
+            else
+            {
+                int WORK_generatedProjectID = DB_reader.GetInt32(0);
+
+                API_PROP_logger.LogInformation("EXECUTED: PROJECT_ASYNC_createNewProject --> OUTPUT: Succesfully created new project {0}", WORK_generatedProjectID);
+                await DB_connection.CloseAsync();
+                return WORK_generatedProjectID;
+            }
+    
         }
 
         public async Task<bool> PROJECT_ASYNC_changeProjectStatus(int INPUT_ProjectID, bool INPUT_Status)

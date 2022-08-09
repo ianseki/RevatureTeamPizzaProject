@@ -28,12 +28,11 @@ namespace Project2_Server.Data
         //      If not able to create new employee -> returns FALSE
 
         
-        Task<DMODEL_Employee> EMPLOYEE_ASYNC_checkEmployeeLogin(string INPUT_Email, string INPUT_Password);
+        Task<DMODEL_Employee> EMPLOYEE_ASYNC_checkEmployeeLogin(string INPUT_Email);
         // FUNCTION:
-        //      Verifies that the inputed email and password coresponds to an entry/row in the [Project2].[Employee] database
+        //      Passes the inputed email coresponds to an entry/row in the [Project2].[Employee] database
         // PARAMETER (string, string):
         //      Employee's Email
-        //      Employee's Password
         // OUTPUT (DMODEL_Employee):
         //      If valid login -> returns the employee's data row
         //          OR

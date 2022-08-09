@@ -14,7 +14,7 @@ namespace Project2_Server.Data
         //          OR
         //      If no corresponding order is found -> returns blank order (-1, DateTime.MinValue, false)
 
-        Task<bool> ORDER_ASYNC_createNewOrder(DMODEL_Order INPUT_DMODEL_Order);
+        Task<int> ORDER_ASYNC_createNewOrder(DMODEL_Order INPUT_DMODEL_Order);
         // FUNCTION:
         //      Get order data and tries to enter it into Order Database
         // PARAMETERS: (DMODEL_Order)
@@ -22,10 +22,10 @@ namespace Project2_Server.Data
         //      Order Status
         //           *NOTE: The entered orderID in the passed in Data Model is disregared / dummy data
         //                      as the database with auto-generate its own orderID
-        // OUTPUTS: (bool)
-        //      If succesfully created a new order --> OUTPUT: returns true
+        // OUTPUTS: (int)
+        //      If succesfully created a new order --> OUTPUT: returns generated order's primary key
         //          OR
-        //      If unable to create a new order --> OUTPUT: returns false
+        //      If unable to create a new order --> OUTPUT: returns -1
 
         Task<bool> ORDER_ASYNC_changeOrderStatus(int INPUT_OrderID, bool INPUT_Status);
         // FUNCTION:

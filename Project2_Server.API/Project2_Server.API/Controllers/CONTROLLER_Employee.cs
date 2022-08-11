@@ -9,7 +9,7 @@ using Project2_Server.Model;
 
 namespace Project2_Server.API.Controllers
 {
-    [Route("api/Employee")]
+    [Route("API/Employee")]
     [ApiController]
     public class CONTROLLER_Employee : ControllerBase
     {
@@ -30,7 +30,8 @@ namespace Project2_Server.API.Controllers
             this.API_DATA_Logger = INPUT_Logger;
         }
 
-        [HttpGet("INPUT_Email/INPUT_Password")]
+        [HttpGet]
+        [Route("CheckLogin")]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<bool> API_ASYNC_EMPLOYEE_checkValidLogin(string INPUT_Email, string INPUT_Password)
@@ -56,8 +57,9 @@ namespace Project2_Server.API.Controllers
         }
 
         [HttpPost]
+        [Route("CreateNewEmployee")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<bool> API_ASYNC_EMPLOYEE_createNewCustomer(DMODEL_Employee INPUT_DMODEL_Employee)
+        public async Task<bool> API_ASYNC_EMPLOYEE_createNewEmployee(DMODEL_Employee INPUT_DMODEL_Employee)
         {
             try
             {
@@ -74,7 +76,8 @@ namespace Project2_Server.API.Controllers
             }
         }
 
-        [HttpPost(" updateProjectStatus")]
+        [HttpPost]
+        [Route("UpdateProjectStatus")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<bool> API_ASYNC_EMPLOYEE_updateProjectStatus(int INPUT_ProjectID, bool INPUT_ProjectStatus)
         {

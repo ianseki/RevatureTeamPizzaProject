@@ -59,7 +59,7 @@ namespace Project2_Server.API.Controllers
         [HttpPost]
         [Route("CreateNewEmployee")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<bool> API_ASYNC_EMPLOYEE_createNewEmployee(DMODEL_Employee INPUT_DMODEL_Employee)
+        public async Task<bool> API_ASYNC_EMPLOYEE_createNewEmployee([FromBody]DMODEL_Employee INPUT_DMODEL_Employee)
         {
             try
             {

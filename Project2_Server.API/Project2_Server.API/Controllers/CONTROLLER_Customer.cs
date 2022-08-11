@@ -58,7 +58,7 @@ namespace Project2_Server.API.Controllers
         [HttpPost]
         [Route("CreateNewCustomer")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<bool> API_ASYNC_CUSTOMER_createNewCustomer(DMODEL_Customer INPUT_DMODEL_Customer)
+        public async Task<bool> API_ASYNC_CUSTOMER_createNewCustomer([FromBody] DMODEL_Customer INPUT_DMODEL_Customer)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace Project2_Server.API.Controllers
         public async Task<bool> API_ASYNC_CUSTOMER_createNewOrder(int INPUT_CustomerID, [FromBody] DTO_OrderProject INPUT_DTO_OrderProject)
         {
             // Adds Order into [Project2].[Order] Table
-            int WORK_generatedOrderID = await API_PROP_INTERFACE_Order.ORDER_ASYNC_createNewOrder(INPUT_DTO_OrderProject.INPUT_DMODEL_Order);
+            int WORK_generatedOrderID = await API_PROP_INTERFACE_Order.ORDER_ASYNC_createNewOrder(INPUT_DTO_OrderProject.DMODEL_Order);
 
             if (WORK_generatedOrderID == -1)
             {
@@ -92,7 +92,7 @@ namespace Project2_Server.API.Controllers
             // Adds All Projects into [Project2].[Project] Table
             List<int> WORK_generatedProjectIDs = new List<int>();
 
-            foreach (DMODEL_Project TEMP_Project in INPUT_DTO_OrderProject.INPUT_LIST_DMODEL_Projects)
+            foreach (DMODEL_Project TEMP_Project in INPUT_DTO_OrderProject.LIST_DMODEL_Projects)
             {
                 int TEMP_generatedProjectID = await API_PROP_INTERFACE_Project.PROJECT_ASYNC_createNewProject(TEMP_Project);
 
@@ -133,10 +133,10 @@ namespace Project2_Server.API.Controllers
             {
                 DTO_OrderProject DTO_Blank = new DTO_OrderProject();
                 DMODEL_Order DMODEL_Order_Blank = new DMODEL_Order(-1, DateTime.MinValue, false);
-                DMODEL_Project DMODEL_Project_Blank = new DMODEL_Project(-1, -1, false);
+                //DMODEL_Project DMODEL_Project_Blank = new DMODEL_Project(-1, -1, false);
 
-                DTO_Blank.INPUT_DMODEL_Order = DMODEL_Order_Blank;
-                DTO_Blank.INPUT_LIST_DMODEL_Projects.Add(DMODEL_Project_Blank);
+                DTO_Blank.DMODEL_Order = DMODEL_Order_Blank;
+                //DTO_Blank.INPUT_LIST_DMODEL_Projects.Add(DMODEL_Project_Blank);
 
                 OUTPUT_DTO_OrderProject.Add(DTO_Blank);
 
@@ -148,13 +148,13 @@ namespace Project2_Server.API.Controllers
             for (int i = 0; i < WORK_LIST_OrderIDs.Count; i++)
             {
                 DTO_OrderProject TEMP_DTO_OrderProject = new DTO_OrderProject();
-                TEMP_DTO_OrderProject.INPUT_DMODEL_Order = await API_PROP_INTERFACE_Order.ORDER_ASYNC_getOrderData(WORK_LIST_OrderIDs[i]);
+                TEMP_DTO_OrderProject.DMODEL_Order = await API_PROP_INTERFACE_Order.ORDER_ASYNC_getOrderData(WORK_LIST_OrderIDs[i]);
 
                 List<int> WORK_LIST_ProjectIDs = await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_getFromOrderProjectLinkingTable(WORK_LIST_OrderIDs[i]);
 
                 for (int j = 0; j < WORK_LIST_ProjectIDs.Count; j++)
                 {
-                    TEMP_DTO_OrderProject.INPUT_LIST_DMODEL_Projects.Add(await API_PROP_INTERFACE_Project.PROJECT_ASYNC_getProjectData(WORK_LIST_ProjectIDs[j]));
+                    TEMP_DTO_OrderProject.LIST_DMODEL_Projects.Add(await API_PROP_INTERFACE_Project.PROJECT_ASYNC_getProjectData(WORK_LIST_ProjectIDs[j]));
                 }
 
                 OUTPUT_DTO_OrderProject.Add(TEMP_DTO_OrderProject);

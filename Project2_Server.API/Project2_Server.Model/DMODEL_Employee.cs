@@ -30,13 +30,13 @@
             Console.WriteLine(password);
         }
 
-        public void DMODEL_EMPLOYEE_verifyData(DMODEL_Employee INPUT_DMODEL_Employee)
+        public void DMODEL_EMPLOYEE_verifyData()
         {
-            if (INPUT_DMODEL_Employee.employee_id == null || INPUT_DMODEL_Employee.employee_id < 0) throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.employee_id));
-            if (INPUT_DMODEL_Employee.first_name == null || INPUT_DMODEL_Employee.first_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.first_name));
-            if (INPUT_DMODEL_Employee.last_name == null || INPUT_DMODEL_Employee.last_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.last_name));
-            if (INPUT_DMODEL_Employee.email == null || INPUT_DMODEL_Employee.email == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.email));
-            if (INPUT_DMODEL_Employee.password == null || INPUT_DMODEL_Employee.password == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.password));
+            if (this.employee_id == null || this.employee_id < 0) throw new ArgumentNullException(nameof(this.employee_id));
+            if (this.first_name == null || this.first_name == "") throw new ArgumentNullException(nameof(this.first_name));
+            if (this.last_name == null || this.last_name == "") throw new ArgumentNullException(nameof(this.last_name));
+            if (this.email == null || this.email == "") throw new ArgumentNullException(nameof(this.email));
+            if (this.password == null || this.password == "") throw new ArgumentNullException(nameof(this.password));
         }
 
     }

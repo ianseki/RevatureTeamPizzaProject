@@ -30,13 +30,13 @@
             Console.WriteLine(password);
         }
 
-        public void DMODEL_CUSTOMER_verifyData(DMODEL_Customer INPUT_DMODEL_Customer)
+        public void DMODEL_CUSTOMER_verifyData()
         {
-            if (INPUT_DMODEL_Customer.customer_id == null || INPUT_DMODEL_Customer.customer_id < 0) throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.customer_id));
-            if (INPUT_DMODEL_Customer.first_name == null || INPUT_DMODEL_Customer.first_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.first_name));
-            if (INPUT_DMODEL_Customer.last_name == null || INPUT_DMODEL_Customer.last_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.last_name));
-            if (INPUT_DMODEL_Customer.email == null || INPUT_DMODEL_Customer.email == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.email));
-            if (INPUT_DMODEL_Customer.password == null || INPUT_DMODEL_Customer.password == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.password));
+            if (this.customer_id == null || this.customer_id < 0) throw new ArgumentNullException(nameof(this.customer_id));
+            if (this.first_name == null || this.first_name == "") throw new ArgumentNullException(nameof(this.first_name));
+            if (this.last_name == null || this.last_name == "") throw new ArgumentNullException(nameof(this.last_name));
+            if (this.email == null || this.email == "") throw new ArgumentNullException(nameof(this.email));
+            if (this.password == null || this.password == "") throw new ArgumentNullException(nameof(this.password));
         }
 
     }

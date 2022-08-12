@@ -30,5 +30,14 @@
             Console.WriteLine(password);
         }
 
+        public void DMODEL_EMPLOYEE_verifyData(DMODEL_Employee INPUT_DMODEL_Employee)
+        {
+            if (INPUT_DMODEL_Employee.employee_id == null || INPUT_DMODEL_Employee.employee_id < 0) throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.employee_id));
+            if (INPUT_DMODEL_Employee.first_name == null || INPUT_DMODEL_Employee.first_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.first_name));
+            if (INPUT_DMODEL_Employee.last_name == null || INPUT_DMODEL_Employee.last_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.last_name));
+            if (INPUT_DMODEL_Employee.email == null || INPUT_DMODEL_Employee.email == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.email));
+            if (INPUT_DMODEL_Employee.password == null || INPUT_DMODEL_Employee.password == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Employee.password));
+        }
+
     }
 }

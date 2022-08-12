@@ -23,5 +23,12 @@
             Console.WriteLine(item_id);
             Console.WriteLine(completion_status);
         }
+
+        public void DMODEL_PROJECT_verifyData(DMODEL_Project INPUT_DMODEL_Project)
+        {
+            if (INPUT_DMODEL_Project.project_id == null || INPUT_DMODEL_Project.project_id < 0) throw new ArgumentNullException(nameof(INPUT_DMODEL_Project.project_id));
+            if (INPUT_DMODEL_Project.item_id == null || INPUT_DMODEL_Project.item_id < 0) throw new ArgumentNullException(nameof(INPUT_DMODEL_Project.item_id));
+            if (INPUT_DMODEL_Project.item_id == null) throw new ArgumentNullException(nameof(INPUT_DMODEL_Project.item_id));
+        }
     }
 }

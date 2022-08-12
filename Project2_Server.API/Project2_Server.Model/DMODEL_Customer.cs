@@ -30,5 +30,14 @@
             Console.WriteLine(password);
         }
 
+        public void DMODEL_CUSTOMER_verifyData(DMODEL_Customer INPUT_DMODEL_Customer)
+        {
+            if (INPUT_DMODEL_Customer.customer_id == null || INPUT_DMODEL_Customer.customer_id < 0) throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.customer_id));
+            if (INPUT_DMODEL_Customer.first_name == null || INPUT_DMODEL_Customer.first_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.first_name));
+            if (INPUT_DMODEL_Customer.last_name == null || INPUT_DMODEL_Customer.last_name == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.last_name));
+            if (INPUT_DMODEL_Customer.email == null || INPUT_DMODEL_Customer.email == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.email));
+            if (INPUT_DMODEL_Customer.password == null || INPUT_DMODEL_Customer.password == "") throw new ArgumentNullException(nameof(INPUT_DMODEL_Customer.password));
+        }
+
     }
 }

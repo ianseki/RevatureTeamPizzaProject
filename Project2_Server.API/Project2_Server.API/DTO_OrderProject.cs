@@ -17,5 +17,14 @@ namespace Project2_Server.API
         }
 
         // METHODS
+
+        public void DTO_OrderProject_verifyData()
+        {
+            this.DMODEL_Order.DMODEL_ORDER_verifyData();
+            foreach(DMODEL_Project TEMP_Project in LIST_DMODEL_Projects)
+            {
+                TEMP_Project.DMODEL_PROJECT_verifyData();
+            }
+        }
     }
 }

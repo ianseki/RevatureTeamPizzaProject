@@ -37,7 +37,7 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v2
-        witth:
+        with:
           context: ./Project2_Server.API
           file: ./Project2_Server.API/Dockerfile
           push: true

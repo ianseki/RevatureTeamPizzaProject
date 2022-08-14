@@ -38,10 +38,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./Project2_Server.API
+          context: ./Project2_Server.API/
           file: ./Project2_Server.API/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/Team_Pizza:latest
           
           
         

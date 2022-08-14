@@ -5,7 +5,7 @@ name: DockerIMG_Build&Publish
 # Controls when the workflow will run
 on:
   push:
-    branches: [ "Development", "main" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 

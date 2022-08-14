@@ -24,5 +24,11 @@
             Console.WriteLine(this.status);
         }
 
+        public void DMODEL_ORDER_verifyData()
+        {
+            if (this.order_id == null || this.order_id < 0) throw new ArgumentNullException(nameof(this.order_id));
+            if (this.time_of_order == null) throw new ArgumentNullException(nameof(this.time_of_order));
+            if (this.status == null) throw new ArgumentNullException(nameof(this.status));
+        }
     }
 }

@@ -1,7 +1,7 @@
 using Project2_Server.Data;
 
 // TEMP Getting connection string, update when deploying
-string DB_connectionString = _configuration.GetConnectionString("Woodcutter_DB");
+string DB_connectionString = GetEnvironmentVariable("MYSQLCONNSTR_Woodcutter_DB");
 
 
 var builder = WebApplication.CreateBuilder(args);

@@ -120,13 +120,13 @@ namespace Project2_Server.Data
                 await DB_command.ExecuteNonQueryAsync();
 
 
-                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- OUTPUT: Created customer {0}", INPUT_DMODEL_Customer.email);
+                API_PROP_logger.LogInformation("EXECUTED: CUSTOMER_ASYNC_createNewCustomer --- OUTPUT: Created customer {0}", INPUT_DMODEL_Customer.email);
                 await DB_connection.CloseAsync();
                 return true;
             }
             catch (Exception e)
             {
-                API_PROP_logger.LogError("EXECUTED: CUSTOMER_ASYNC_checkCustomerLogin --- OUTPUT: FAILED to create user {0}", INPUT_DMODEL_Customer.email);
+                API_PROP_logger.LogError("EXECUTED: CUSTOMER_ASYNC_createNewCustomer --- OUTPUT: FAILED to create user {0}", INPUT_DMODEL_Customer.email);
                 API_PROP_logger.LogError(e, e.Message);
                 return false;
             }

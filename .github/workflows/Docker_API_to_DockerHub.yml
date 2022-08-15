@@ -41,7 +41,7 @@ jobs:
           context: ./Project2_Server.API/
           file: ./Project2_Server.API/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/Team_Pizza:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/team_pizza:latest
           
           
         

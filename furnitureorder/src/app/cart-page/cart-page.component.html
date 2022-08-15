@@ -1,0 +1,57 @@
+<app-not-found
+  [visible]="!cart || cart.items.length <= 0"
+  notFoundMessage="Cart is Empty!"
+  resetLinkText="Return to the Homepage ⮌"
+></app-not-found>
+
+<div *ngIf="cart && cart.items.length > 0" class="container">
+  <ul>
+    <li *ngFor="let cartItem of cart.items">
+      <div>
+        <img
+          [src]="cartItem.furniture.imageUrl"
+          [alt]="cartItem.furniture.name"
+        />
+      </div>
+      <div>
+        <a routerLink="/furniture/{{ cartItem.furniture.id }}">
+          {{ cartItem.furniture.name }}
+        </a>
+      </div>
+      <div>
+        <select
+          #quantitySelect
+          (change)="changeQuantity(cartItem, quantitySelect.value)"
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+
+      <!--<div>
+        {{ cartItem.price | currency }}
+      </div>-->
+
+      <div>
+        <button class="remove-button" (click)="removeFromCart(cartItem)">
+          Remove
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <div class="checkout">
+    <div class="furniture-count">
+      {{ cart.items.length }}
+    </div>
+
+    <div class="total-price">
+      {{ cart.totalPrice | currency }}
+    </div>
+
+    <a routerLink="/checkout">Proceed to checkout</a>
+  </div>
+</div>

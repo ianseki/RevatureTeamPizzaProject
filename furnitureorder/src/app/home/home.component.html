@@ -1,0 +1,34 @@
+<app-search></app-search>
+<app-not-found
+  [visible]="!furnitures || furnitures.length <= 0"
+  resetLinkText="Return to the Homepage ⮌"
+></app-not-found>
+
+<ul>
+  <li *ngFor="let furniture of furnitures">
+    <a routerLink="/furniture/{{ furniture.id }}">
+      <img src="{{ furniture.imageUrl }}" alt="furniture images" />
+
+      <div class="content">
+        <div class="name">
+          {{ furniture.name }}
+        </div>
+
+        <div class="product-item-footer">
+          <div classes="timeFrame">
+            <span>🕑</span>
+            {{ furniture.timeFrame }}
+          </div>
+
+          <div class="numberofEmployees">
+            <span>👥</span>
+            {{ furniture.numberofEmployees }}
+          </div>
+        </div>
+        <div class="price">
+          {{ furniture.price | currency }}
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>

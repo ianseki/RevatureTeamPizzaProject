@@ -6,7 +6,6 @@ using Project2_Server.Data;
 string DB_connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_Woodcutter_DB");
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

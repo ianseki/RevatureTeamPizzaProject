@@ -1,0 +1,200 @@
+		Customer Controller Functions
+	
+	Base Route (.../API/Customer/...)
+
+1. GET (.../API/Customer/CheckLogin)	
+	CALLING - API_ASYNC_CUSTOMER_checkValidLogin( string, string )
+	
+	FUNCTION - Takes in an email and password and compares it with the stored user data
+		in the database.
+			
+	PARAMETER - ( string, string )
+		1. Customer's Email as a string
+		2. Customer's Password as a string
+		
+	RETURN - Bool value:
+		1. If email and password matches ones in database 	-> Returns true
+		2. If email matches, but password does not 			-> Returns false
+		3. If neither email or password matches				-> Returns false
+			
+		
+		
+2. POST (.../API/Customer/CreateNewCustomer)	
+	CALLING - API_ASYNC_CUSTOMER_createNewCustomer( DMODEL_Customer )
+	
+	FUNCTION - Takes in passed user information, and creates a new user in the database
+	
+	PARAMETER - ( [FromBody]DMODEL_Customer )
+		1. Customer's Data as a DMODEL_Customer in the HTTP Body	
+			WHEREAS DMODEL_Customer:
+			{
+				"customer_id": int,
+				"first_name": "string",
+				"last_name": "string",
+				"email": "string",
+				"password": "string"
+			}
+		
+	RETURN - Bool value:
+		1. If successfully creates new customer 	-> Returns true
+		1. If failed to create new customer			-> Returns false
+		
+		
+		
+3. POST (.../API/Customer/CreateNewOrder)
+	CALLING - API_ASYNC_CUSTOMER_createNewOrder ( int, [FromBody]DTO_OrderProject )
+	
+	FUNCTION - Takes in passed information from frontend application and creates a new order
+		and projects for the customer
+		
+	PARAMETER - ( int, [FromBody]DTO_OrderProject )
+		1. Customer's ID as an int
+		2. DTO_OrderProject from frontend in the HTTP Body
+			WHEREAS DTO_OrderProject for N number of Projects:
+			{
+				"DMODEL_Order": {
+					"order_id": INT ,
+					"time_of_order": DATETIME ,
+					"status": BOOL
+				},
+				"LIST_DMODEL_Projects": [
+					{
+						"project_id": 0 ,
+						"item_id": INT ,
+						"completion_status": BOOL
+					},
+					{
+						"project_id": 1,
+						"item_id": INT ,
+						"completion_status": BOOL
+					}
+					...
+					{
+						"project_id": N,
+						"item_id": INT ,
+						"completion_status": BOOL
+					}
+				]
+			}
+			
+	RETURN - Bool value:
+		1. If successfully creates new order for customer 	-> Returns true
+		2. If unable to create new order for customer		-> Returns false
+		
+	
+	
+4. GET (.../API/Customer/GetOrderHistory)
+	CALLING - API_ASYNC_CUSTOMER_getOrderHistory ( int )
+	
+	FUNCTION - Gets the order and project history for the customer 
+	
+	PARAMETER - ( int )
+		1. Customer's ID as an int
+		
+	RETURN List of DTO_OrderProject:
+		1. If customer has order history 	-> Returns LIST_DMODEL_Projects
+			WHEREAS LIST_DMODEL_Projects for N number Orders
+			[
+				{
+					"DMODEL_Order": {
+					"order_id": 0,
+					"time_of_order": "2022-08-11T12:52:06.433Z",
+					"status": true
+				},
+				"LIST_DMODEL_Projects": [
+					{
+						"project_id": 0,
+						"item_id": 0,
+						"completion_status": true
+					}
+					]
+				}
+				...
+				{
+					"DMODEL_Order": {
+					"order_id": N ,
+					"time_of_order": "2022-08-11T12:52:06.433Z",
+					"status": true
+				},
+				"LIST_DMODEL_Projects": [
+					{
+						"project_id": 0,
+						"item_id": 0,
+						"completion_status": true
+					}
+					]
+				}
+			]
+		2. If customer has not history		-> Returns dummy LIST_DMODEL_Projects
+			WHEREAS LIST_DMODEL_Projects:
+			[
+				{
+					"DMODEL_Order": {
+					"order_id": -,
+					"time_of_order": "2022-08-11T12:52:06.433Z",
+					"status": false
+				},
+				"LIST_DMODEL_Projects": null
+			]
+		
+		
+===========================================================================================================================================================================		
+		
+		
+		Employee Controller Functions
+	
+	Base Route (.../API/Employee/...)
+
+1. GET (.../API/Employee/CheckLogin)	
+	CALLING - API_ASYNC_EMPLOYEE_checkValidLogin( string, string )
+	
+	FUNCTION - Takes in an email and password and compares it with the stored user data
+		in the database.
+			
+	PARAMETER - ( string, string )
+		1. Employee's Email as a string
+		2. Employee's Password as a string
+		
+	RETURN - Bool value:
+		1. If email and password matches ones in database 	-> Returns true
+		2. If email matches, but password does not 			-> Returns false
+		3. If neither email or password matches				-> Returns false
+			
+		
+		
+2. POST (.../API/Employee/CreateNewEmployee)	
+	CALLING - API_ASYNC_CUSTOMER_createNewCustomer( [FromBody]DMODEL_Employee )
+	
+	FUNCTION - Takes in passed user information, and creates a new user in the database
+	
+	PARAMETER - ( [FromBody]DMODEL_Employee )
+		1. Employee's Data as a DMODEL_Employee in the HTTP Body	
+			WHEREAS DMODEL_Employee:
+			{
+				"employee_id": int,
+				"first_name": "string",
+				"last_name": "string",
+				"email": "string",
+				"password": "string"
+			}
+		
+	RETURN - Bool value:
+		1. If successfully creates new employee 	-> Returns true
+		1. If failed to create new employee			-> Returns false
+		
+
+
+3. POST (.../API/Employee/UpdateProjectStatus)
+	CALLING  - API_ASYNC_EMPLOYEE_updateProjectStatus ( int, bool )
+	
+	FUNCTION - Changes the project status for an specific project
+	
+	PARAMETER - ( int, bool )
+		1. Project's ID
+		2. New Project Status
+		
+	RETURN - Bool value:
+		1. If successfully changes project status 	-> Returns true
+		1. If failed to change project status		-> Returns false
+		
+		

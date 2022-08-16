@@ -32,10 +32,16 @@ namespace Project2_Server.API.Controllers
 
         [HttpGet]
         [Route("CheckLogin")]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<bool> API_ASYNC_EMPLOYEE_checkValidLogin(string INPUT_Email, string INPUT_Password)
         {
+            // Data Verification
+            if (INPUT_Email == null || INPUT_Email == "" || INPUT_Password == null || INPUT_Password == "")
+            {
+                API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: Invalid inputs");
+                return false;
+            }
+
+            // Logic Implementation
             DMODEL_Employee WORK_DMODEL_Employee = await API_PROP_INTERFACE_Employee.EMPLOYEE_ASYNC_checkEmployeeLogin(INPUT_Email);
 
             if (WORK_DMODEL_Employee.employee_id == -1)
@@ -58,11 +64,14 @@ namespace Project2_Server.API.Controllers
 
         [HttpPost]
         [Route("CreateNewEmployee")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<bool> API_ASYNC_EMPLOYEE_createNewEmployee(DMODEL_Employee INPUT_DMODEL_Employee)
+        public async Task<bool> API_ASYNC_EMPLOYEE_createNewEmployee([FromBody]DMODEL_Employee INPUT_DMODEL_Employee)
         {
             try
             {
+                // Data Verficiation
+                INPUT_DMODEL_Employee.DMODEL_EMPLOYEE_verifyData();
+
+                // Logic Implementation
                 await API_PROP_INTERFACE_Employee.EMPLOYEE_ASYNC_createNewEmployee(INPUT_DMODEL_Employee);
 
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewCustomer --> OUTPUT: Created new customer");
@@ -78,11 +87,18 @@ namespace Project2_Server.API.Controllers
 
         [HttpPost]
         [Route("UpdateProjectStatus")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<bool> API_ASYNC_EMPLOYEE_updateProjectStatus(int INPUT_ProjectID, bool INPUT_ProjectStatus)
         {
             try
             {
+                // Data Verification
+                if (INPUT_ProjectID == null || INPUT_ProjectID < 0 || INPUT_ProjectStatus == null)
+                {
+                    API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_updateProjectStatus --> OUTPUT: Invalid inputs");
+                    return false;
+                }
+
+                // Logic Implementation
                 await API_PROP_INTERFACE_Project.PROJECT_ASYNC_changeProjectStatus(INPUT_ProjectID, INPUT_ProjectStatus);
 
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_updateProjectStatus --> OUTPUT: Updated Project {0} status to {1}", INPUT_ProjectID, INPUT_ProjectStatus);

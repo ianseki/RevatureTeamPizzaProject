@@ -9,6 +9,7 @@ COPY ./Project2_Server.API.sln .
 COPY ./Project2_Server.API/Project2_Server.API.csproj ./Project2_Server.API/Project2_Server.API.csproj
 COPY ./Project2_Server.Model/Project2_Server.Model.csproj ./Project2_Server.Model/Project2_Server.Model.csproj
 COPY ./Project2_Server.Data/Project2_Server.Data.csproj ./Project2_Server.Data/Project2_Server.Data.csproj
+COPY ./Project2_Server.Test/Project2_Server.Test.csproj ./Project2_Server.Test/Project2_Server.Test.csproj
 
 RUN dotnet publish -c Release -o /published ./Project2_Server.API.sln
 

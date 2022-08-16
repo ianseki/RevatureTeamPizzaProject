@@ -79,7 +79,7 @@
 			
 	RETURN - Bool value:
 		1. If successfully creates new order for customer 	-> Returns true
-		2. If unable to create new order for customer		-> Returns false
+		2. If unable to create new order for customer			-> Returns false
 		
 	
 	
@@ -195,6 +195,6 @@
 		
 	RETURN - Bool value:
 		1. If successfully changes project status 	-> Returns true
-		1. If failed to change project status		-> Returns false
+		1. If failed to change project status			-> Returns false
 		
 		

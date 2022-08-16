@@ -38,7 +38,7 @@ namespace Project2_Server.Test
         }
 
         [Fact]
-        public async void checkCreateNewCustomer_Success()
+        public async void CheckCreateNewCustomer_Success()
         {
             // Arrange
             var newCustomer = new DMODEL_Customer(1, "Jane", "Doe", "jane@email.com", "password");
@@ -55,12 +55,11 @@ namespace Project2_Server.Test
             var result = await controller.API_ASYNC_CUSTOMER_createNewCustomer(newCustomer);
             // Act
 
-            // Assert
             Assert.True(result);
         }
 
         [Fact]
-        public async void checkCreateNewCustomer_Fail()
+        public async void CheckCreateNewCustomer_Fail()
         {
             // Arrange
             var newCustomer = new DMODEL_Customer(1, null, "Doe", "jane@email.com", "password");
@@ -78,13 +77,13 @@ namespace Project2_Server.Test
             // Act
 
             // Assert
-            Assert.True(result);
+            Assert.False(result);
         }
 
         [Fact]
-        public void checkCreateNewCustomer_Pass()
+        public void CheckCreateNewCustomer_DModel_Pass()
         {
-            bool result = false;
+            bool result;
 
             try
             {
@@ -101,14 +100,14 @@ namespace Project2_Server.Test
         }
 
         [Fact]
-        public void checkCreateNewCustomerDModel_Fail()
+        public void CheckCreateNewCustomer_DModel_Fail()
         {
-            bool result = false;
+            bool result;
 
             try
             {
                 var newCustomer = new DMODEL_Customer(1, null, "Doe", "jane@email.com", "password");
-                result = true;
+                result = false;
             }
             catch (Exception e)
             {
@@ -116,29 +115,41 @@ namespace Project2_Server.Test
             }
 
             // Assert
-            Assert.True(result);
+            Assert.False(result);
         }
 
 
         [Fact]
-        public void checkCustomerLoginSQL()
+        public async void CheckCustomerLogin_Success()
         {
             // Arrange
             DMODEL_Customer checkCustomer = new DMODEL_Customer(1, "Jane", "Doe", "jane@email.com", "password");
 
-            mockRepo.Setup(x => x.CUSTOMER_ASYNC_checkCustomerLogin("jane@email.com")).ReturnsAsync(checkCustomer);
+            var controller = new CONTROLLER_Customer(mockRepo.Object,
+                                                       mockOrder.Object,
+                                                       mockProject.Object,
+                                                       mockLinkingTable.Object,
+                                                       mockILogger.Object);
+
+
+
+            string fakePassword = "password";
+            bool check = await controller.API_ASYNC_CUSTOMER_checkValidLogin("jane@email.com", "password");
+
+            Assert.True(check);
         }
 
-        //[Fact]
-        //public void checkGetUserSQL()
-        //{
-        //    // Arrange
-        //    DMODEL_Customer checkCustomer = new DMODEL_Customer(1, "Jane", "Doe", "jane@email.com", "password");
+        [Fact]
+        public void CheckGetUserSQL()
+        {
+            // Arrange
+            DMODEL_Customer checkCustomer = new DMODEL_Customer(1, "Jane", "Doe", "jane@email.com", "password");
 
 
-        //    mockRepo.
-        //        (x => x.CUSTOMER_ASYNC_getCustomerData(1)).ThrowsAsync<ArgumentNullException>(checkCustomer);
-        //}
+            var customerTest = mockRepo.Setup(x => x.CUSTOMER_ASYNC_getCustomerData(1)).ReturnsAsync(checkCustomer);
+
+
+        }
 
         //[Fact]
         //public async void ShouldReturnPosts()

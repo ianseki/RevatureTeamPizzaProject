@@ -17,4 +17,4 @@ FROM nginx:1.22.0-alpine
 
 COPY --from=build-step /app/dist/furnitureorder /usr/share/nginx/html
 
-EXPOSE 80
+RUN sudo ng serve --port 80

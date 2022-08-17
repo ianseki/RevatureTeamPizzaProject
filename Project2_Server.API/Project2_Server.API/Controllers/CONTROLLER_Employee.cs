@@ -111,5 +111,31 @@ namespace Project2_Server.API.Controllers
                 return false;
             }
         }
+
+        [HttpGet]
+        [Route("GetOutstandingProject")]
+        public async Task<List<int>> API_ASYNC_EMPLOYEE_getOutstandingProjects(int INPUT_EmployeeID)
+        {
+            List<int> OUTPUT_outstandingProjectIDs = new List<int> { -1 };
+            try
+            {
+                // Data Verification
+                if (INPUT_EmployeeID == null || INPUT_EmployeeID < 0)
+                {
+                    return OUTPUT_outstandingProjectIDs;
+                }
+                OUTPUT_outstandingProjectIDs.Clear();
+
+                // Logic Implementation
+                OUTPUT_outstandingProjectIDs = await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_getFromProjectEmployeeLinkingTable(INPUT_EmployeeID);
+                return OUTPUT_outstandingProjectIDs;
+            }
+            catch (Exception e)
+            {
+                API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_getOustandingProjects --> OUTPUT: Failed to get outstanding projects for employee {0}", INPUT_EmployeeID);
+                API_DATA_Logger.LogError(e, e.Message);
+                return OUTPUT_outstandingProjectIDs;
+            }
+        }
     }
 }

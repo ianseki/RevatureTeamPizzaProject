@@ -143,5 +143,43 @@ namespace Project2_Server.Data
             }
         }
 
+        public async Task<List<int>> LINKING_ASYNC_getFromProjectEmployeeLinkingTable(int INPUT_EmployeeID)
+        {
+            SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
+            await DB_connection.OpenAsync();
+
+            string DB_commandText = @"SELECT [PROJECT2].[Project_Employee_Link].[project_id]
+                                    FROM[PROJECT2].[Project_Employee_Link]
+                                    JOIN[PROJECT2].[Project] ON[PROJECT2].[Project_Employee_Link].[project_id] = [PROJECT2].[Project].[project_id]
+                                    WHERE[PROJECT2].[Project].[completion_status] = 0 AND[PROJECT2].[Project_Employee_Link].[employee_id] = @INPUT_EmployeeID; ";
+
+            using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
+            DB_command.Parameters.AddWithValue("@INPUT_EmployeeID", INPUT_EmployeeID);
+
+            using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
+
+            if (DB_reader.HasRows == false)
+            {
+                List<int> OUTPUT_blank = new List<int>() { -1 };
+
+                API_PROP_logger.LogInformation("EXECUTED: LINKING_ASYNC_getFromProjectEmployeeLinkingTable --> OUTPUT: FAILED to find projects with employee {0}", INPUT_EmployeeID);
+                await DB_connection.CloseAsync();
+                return OUTPUT_blank;
+            }
+            else
+            {
+                List<int> OUTPUT_LIST_ProjectIDs = new List<int>();
+                while (await DB_reader.ReadAsync())
+                {
+                    int WORK_ProjectID = DB_reader.GetInt32(0);
+                    OUTPUT_LIST_ProjectIDs.Add(WORK_ProjectID);
+                }
+
+                API_PROP_logger.LogInformation("EXECUTED: LINKING_ASYNC_getFromProjectEmployeeLinkingTable --> OUTPUT: Successfully got all projectIDs for employee {0}", INPUT_EmployeeID);
+                await DB_connection.CloseAsync();
+                return OUTPUT_LIST_ProjectIDs;
+            }
+        }
+
     }
 }

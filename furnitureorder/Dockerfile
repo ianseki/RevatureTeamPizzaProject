@@ -19,6 +19,6 @@ FROM nginx:1.22.0-alpine
 
 COPY --from=build-step /app/dist/furnitureorder /usr/share/nginx/html
 
-
+ENTRYPOINT ["./docker-entrypoint.sh"]
 
 

@@ -31,7 +31,7 @@ namespace Project2_Server.API.Controllers
 
         [HttpGet]
         [Route("CheckLogin")]
-        public async Task<bool> API_ASYNC_CUSTOMER_checkValidLogin(string INPUT_Email, string INPUT_Password)
+        public async Task<int> API_ASYNC_CUSTOMER_checkValidLogin(string INPUT_Email, string INPUT_Password)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace Project2_Server.API.Controllers
                 if (INPUT_Email == null || INPUT_Email == "" || INPUT_Password == null || INPUT_Password == "")
                 {
                     API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_checkValidLogin --> OUTPUT: Invalid inputs");
-                    return false;
+                    return -1;
                 }
 
                 // Logic Implementation
@@ -48,25 +48,25 @@ namespace Project2_Server.API.Controllers
                 if (WORK_DMODEL_Customer.customer_id == -1)
                 {
                     API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_checkValidLogin --> OUTPUT: User doesn't exist in database");
-                    return false;
+                    return -1;
                 }
 
                 if (WORK_DMODEL_Customer.password == INPUT_Password)
                 {
                     API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_checkValidLogin --> OUTPUT: User login verified");
-                    return true;
+                    return WORK_DMODEL_Customer.customer_id;
                 }
                 else
                 {
                     API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_checkValidLogin --> OUTPUT: User password is incorrect");
-                    return false;
+                    return -1;
                 }
             }
             catch (Exception e)
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_checkValidLogin --> OUTPUT: Failed to create new customer");
                 API_DATA_Logger.LogError(e, e.Message);
-                return false;
+                return -1;
             }
         }
 

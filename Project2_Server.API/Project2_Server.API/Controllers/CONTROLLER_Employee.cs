@@ -32,13 +32,13 @@ namespace Project2_Server.API.Controllers
 
         [HttpGet]
         [Route("CheckLogin")]
-        public async Task<bool> API_ASYNC_EMPLOYEE_checkValidLogin(string INPUT_Email, string INPUT_Password)
+        public async Task<int> API_ASYNC_EMPLOYEE_checkValidLogin(string INPUT_Email, string INPUT_Password)
         {
             // Data Verification
             if (INPUT_Email == null || INPUT_Email == "" || INPUT_Password == null || INPUT_Password == "")
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: Invalid inputs");
-                return false;
+                return -1;
             }
 
             // Logic Implementation
@@ -47,18 +47,18 @@ namespace Project2_Server.API.Controllers
             if (WORK_DMODEL_Employee.employee_id == -1)
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: User doesn't exist in database");
-                return false;
+                return -1;
             }
 
             if (WORK_DMODEL_Employee.password == INPUT_Password)
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: User login verified");
-                return true;
+                return WORK_DMODEL_Employee.employee_id;
             }
             else
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: User password is incorrect");
-                return false;
+                return -1;
             }
         }
 

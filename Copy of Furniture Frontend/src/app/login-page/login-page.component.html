@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1>WoodCutters Union</h1>
+          <h5>Please Login</h5><hr>
+
+        </div>
+        <!-- [formGroup]="loginForm" (ngSubmit)="logIn()" add after <form -->
+        <form> 
+          <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input formControlName="email" placeholder="Enter Correct Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input formControlName="password" placeholder="Enter Correct Password" type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <a style="color: blue; margin-top:10px;" routerLink="/signup">Create a New Account!</a>
+
+      </div>
+    </div>
+  </div>
+</div>

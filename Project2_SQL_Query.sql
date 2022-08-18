@@ -69,15 +69,9 @@ VALUES
 -- Item
 INSERT INTO [PROJECT2].[Item] (item_name, emp_needed, bill_hours)
 VALUES
-('Chair', 1, 10);
-
-INSERT INTO [PROJECT2].[Item] (item_name, emp_needed, bill_hours)
-VALUES
+('Chair', 1, 10),
+('Table', 2, 12),
 ('Desk', 4, 10);
-
-INSERT INTO [PROJECT2].[Item] (item_name, emp_needed, bill_hours)
-VALUES
-('Table', 2, 12);
 
 -- Employee
 INSERT INTO [PROJECT2].[Employee] (first_name, last_name, email, password)
@@ -173,3 +167,10 @@ ORDER BY  COUNT([PROJECT2].[Project_Employee_Link].employee_id) ASC)));
 -- IF @max IS NULL
 --     SET @max = 0
 -- DBCC CHECKIDENT ('PROJECT2.Project_Employee_Link', RESEED, @max);
+
+-- DECLARE @max int
+-- SELECT @max=MAX([customer_id])
+-- FROM PROJECT2.Customer
+-- IF @max IS NULL
+--     SET @max = 0
+-- DBCC CHECKIDENT ('PROJECT2.Customer', RESEED, @max);

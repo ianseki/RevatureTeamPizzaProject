@@ -3,8 +3,11 @@ using System.IO;
 using Project2_Server.Data;
 
 // TEMP Getting connection string, update when deploying
+
 string DB_connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_Woodcutter_DB");
 
+
+string DB_connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_Woodcutter_DB");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,18 @@ builder.Services.AddSingleton<INTERFACE_SQL_Order>(sp => new SQL_Order(DB_connec
 builder.Services.AddSingleton<INTERFACE_SQL_Project>(sp => new SQL_Project(DB_connectionString, sp.GetRequiredService<ILogger<SQL_Project>>()));
 builder.Services.AddSingleton<INTERFACE_SQL_LinkingTable>(sp => new SQL_LinkingTable(DB_connectionString, sp.GetRequiredService<ILogger<SQL_LinkingTable>>()));
 
+string MyAllowAllOrgins = "_myAllowAllOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowAllOrgins, builder =>
+    {
+        builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,5 +50,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(MyAllowAllOrgins);
 
 app.Run();

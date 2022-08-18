@@ -74,6 +74,13 @@ namespace Project2_Server.Data
 
             using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
 
+            int WORK_generatedProjectID = DB_reader.GetInt32(0);
+
+            if (WORK_generatedProjectID == -1)
+            {
+                return -1;
+            }
+
             if (DB_reader.HasRows == false)
             {
                 API_PROP_logger.LogError("EXECUTED: PROJECT_ASYNC_createNewProject --- RETURNED: FAILED to create project");
@@ -81,7 +88,7 @@ namespace Project2_Server.Data
             }
             else
             {
-                int WORK_generatedProjectID = DB_reader.GetInt32(0);
+                WORK_generatedProjectID = DB_reader.GetInt32(0);
 
                 API_PROP_logger.LogInformation("EXECUTED: PROJECT_ASYNC_createNewProject --> OUTPUT: Succesfully created new project {0}", WORK_generatedProjectID);
                 await DB_connection.CloseAsync();

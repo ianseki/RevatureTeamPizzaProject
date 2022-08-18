@@ -8,14 +8,10 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
+  //{ path: 'user', component:UserPageComponent },
+  { path: 'register', component:SignupPageComponent},
+  { path: 'login', component:LoginPageComponent},
   { path: '', redirectTo:'login', pathMatch:'full'},
-  {
-    path: 'user', component:UserPageComponent,
-    children: [
-      { path: 'register', component:SignupPageComponent},
-      { path: 'login', component:LoginPageComponent}
-    ]  
-  },
   { path: 'home', component: HomeComponent },
   { path: 'search/:searchItem', component: HomeComponent },
   { path: 'furniture/:id', component: FurniturePageComponent },

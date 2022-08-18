@@ -80,7 +80,10 @@ namespace Project2_Server.API.Controllers
                 INPUT_DMODEL_Customer.DMODEL_CUSTOMER_verifyData();
 
                 // Logic Implementation
-                await API_PROP_INTERFACE_Customer.CUSTOMER_ASYNC_createNewCustomer(INPUT_DMODEL_Customer);
+                if (!await API_PROP_INTERFACE_Customer.CUSTOMER_ASYNC_createNewCustomer(INPUT_DMODEL_Customer))
+                {
+                    throw new Exception("Failed to create model");
+                }
 
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewCustomer --> OUTPUT: Created new customer");
                 return true;
@@ -105,6 +108,7 @@ namespace Project2_Server.API.Controllers
                     API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewOrder --> OUTPUT: Invalid input for customer ID");
                     return false;
                 }
+                
                 INPUT_DTO_OrderProject.DTO_OrderProject_verifyData();
 
                 // Logic Implementation

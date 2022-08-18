@@ -51,9 +51,14 @@ namespace Project2_Server.Model
                 throw new ArgumentException(nameof(this.first_name));
             }
 
-            if (!(Regex.IsMatch(this.email, @"@")) || !(Regex.IsMatch(this.first_name, @"\.")))
+            if (!(Regex.IsMatch(this.email, @"@")) || !(Regex.IsMatch(this.email, @"\.")))
             {
-                throw new ArgumentException(nameof(this.first_name));
+                throw new ArgumentException(nameof(this.email) + " needs proper email format.");
+            }
+
+            if (this.password.Length < 5)
+            {
+                throw new ArgumentException(nameof(this.email) + " needs to at least be 5 characters");
             }
         }
 

@@ -1,9 +1,7 @@
 using Project2_Server.Data;
 
 // TEMP Getting connection string, update when deploying
-//string DB_connectionString = await File.ReadAllTextAsync(@"./../../../../connectionString_P2.txt");
-string DB_connectionString = "Server = tcp:sekidb.database.windows.net,1433; Initial Catalog = sekidb; Persist Security Info=False; User ID = sekiian; Password =Hello97!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
-
+string DB_connectionString = await File.ReadAllTextAsync(@"./../../../../connectionString_P2.txt");
 
 var builder = WebApplication.CreateBuilder(args);
 

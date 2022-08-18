@@ -287,12 +287,12 @@ namespace Project2_Server.Test
         public async void Check_DModelOrder_Empty_Project_Fail()
         {
             // Arrange
-            var newOrder = new DMODEL_Order();
+            var newOrder = new DMODEL_Order(1, DateTime.Now, false);
             var newProject = new DMODEL_Project();
 
             List<DMODEL_Project> projectList = new List<DMODEL_Project>
             {
-                new DMODEL_Project { project_id = -1, item_id = 1, completion_status = false },
+                new DMODEL_Project { project_id = 1, item_id = 1, completion_status = false },
                 new DMODEL_Project { project_id = 2, item_id = 2, completion_status = false },
                 new DMODEL_Project { project_id = 3, item_id = 1, completion_status = false }
             };

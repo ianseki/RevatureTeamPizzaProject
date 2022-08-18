@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Project2_Server.Model;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Project2_Server.Data
@@ -141,6 +142,24 @@ namespace Project2_Server.Data
                 await DB_connection.CloseAsync();
                 return OUTPUT_Projects;
             }
+        }
+
+        public async Task LINKING_ASYNC_addProjectEmployeeLinkingTable()
+        {
+            //int max = 0;
+            //int project_id = 0;
+
+            SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
+
+            await DB_connection.OpenAsync();
+
+            SqlCommand cmd = new SqlCommand("AssignProjectToEmployee", DB_connection);
+            
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(
+                    new SqlParameter("@max", max),
+                    new SqlParameter("@projectNum", project_id));
         }
 
         public async Task<List<int>> LINKING_ASYNC_getFromProjectEmployeeLinkingTable(int INPUT_EmployeeID)

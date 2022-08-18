@@ -15,4 +15,4 @@ RUN npm run build --prod
 # Stage 2
 FROM nginx:1.22.0-alpine
 
-COPY --from=build-step /app/dist/Copy of Furniture Frontend/ /usr/share/nginx/html
+COPY --from=build-step /app/dist/Furniture /usr/share/nginx/html

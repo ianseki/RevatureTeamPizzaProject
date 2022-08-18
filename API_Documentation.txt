@@ -12,10 +12,10 @@
 		1. Customer's Email as a string
 		2. Customer's Password as a string
 		
-	RETURN - Bool value:
-		1. If email and password matches ones in database 	-> Returns true
-		2. If email matches, but password does not 			-> Returns false
-		3. If neither email or password matches				-> Returns false
+	RETURN - Int value:
+		1. If email and password matches ones in database 	-> Returns customer id
+		2. If email matches, but password does not 			-> Returns -1
+		3. If neither email or password matches				-> Returns -1
 			
 		
 		
@@ -78,7 +78,7 @@
 			}
 			
 	RETURN - Bool value:
-		1. If successfully creates new order for customer 	-> Returns true
+		1. If successfully creates new order for customer 		-> Returns true
 		2. If unable to create new order for customer			-> Returns false
 		
 	
@@ -155,10 +155,10 @@
 		1. Employee's Email as a string
 		2. Employee's Password as a string
 		
-	RETURN - Bool value:
-		1. If email and password matches ones in database 	-> Returns true
-		2. If email matches, but password does not 			-> Returns false
-		3. If neither email or password matches				-> Returns false
+	RETURN - Int value:
+		1. If email and password matches ones in database 	-> Returns employee id
+		2. If email matches, but password does not 			-> Returns -1
+		3. If neither email or password matches				-> Returns -1
 			
 		
 		
@@ -196,5 +196,18 @@
 	RETURN - Bool value:
 		1. If successfully changes project status 	-> Returns true
 		1. If failed to change project status			-> Returns false
+		
+1. GET (.../API/Employee/GetOutstandingProject)	
+	CALLING - API_ASYNC_EMPLOYEE_checkValidLogin( int )
+	
+	FUNCTION - Takes in employee id and finds all assigned projects ids that are not complete.
+			
+	PARAMETER - ( int )
+		1. Employee's ID as an INT
+		
+	RETURN - List<int> value:
+		1. If employee id has outstanding projects				-> Returns List of project IDs 
+		2. If employee id does not have outstanding projects  	-> Returns dummy blank List {-1}
+		3. If employee id does not exist 						-> Returns dummy blank List {-1}
 		
 		

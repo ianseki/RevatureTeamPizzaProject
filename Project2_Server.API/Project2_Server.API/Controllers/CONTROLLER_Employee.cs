@@ -32,13 +32,13 @@ namespace Project2_Server.API.Controllers
 
         [HttpGet]
         [Route("CheckLogin")]
-        public async Task<bool> API_ASYNC_EMPLOYEE_checkValidLogin(string INPUT_Email, string INPUT_Password)
+        public async Task<int> API_ASYNC_EMPLOYEE_checkValidLogin(string INPUT_Email, string INPUT_Password)
         {
             // Data Verification
             if (INPUT_Email == null || INPUT_Email == "" || INPUT_Password == null || INPUT_Password == "")
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: Invalid inputs");
-                return false;
+                return -1;
             }
 
             // Logic Implementation
@@ -47,18 +47,18 @@ namespace Project2_Server.API.Controllers
             if (WORK_DMODEL_Employee.employee_id == -1)
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: User doesn't exist in database");
-                return false;
+                return -1;
             }
 
             if (WORK_DMODEL_Employee.password == INPUT_Password)
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: User login verified");
-                return true;
+                return WORK_DMODEL_Employee.employee_id;
             }
             else
             {
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_checkValidLogin --> OUTPUT: User password is incorrect");
-                return false;
+                return -1;
             }
         }
 
@@ -109,6 +109,32 @@ namespace Project2_Server.API.Controllers
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_updateProjectStatus --> OUTPUT: Failed update status for project {0}", INPUT_ProjectID);
                 API_DATA_Logger.LogError(e, e.Message);
                 return false;
+            }
+        }
+
+        [HttpGet]
+        [Route("GetOutstandingProject")]
+        public async Task<List<int>> API_ASYNC_EMPLOYEE_getOutstandingProjects(int INPUT_EmployeeID)
+        {
+            List<int> OUTPUT_outstandingProjectIDs = new List<int> { -1 };
+            try
+            {
+                // Data Verification
+                if (INPUT_EmployeeID == null || INPUT_EmployeeID < 0)
+                {
+                    return OUTPUT_outstandingProjectIDs;
+                }
+                OUTPUT_outstandingProjectIDs.Clear();
+
+                // Logic Implementation
+                OUTPUT_outstandingProjectIDs = await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_getFromProjectEmployeeLinkingTable(INPUT_EmployeeID);
+                return OUTPUT_outstandingProjectIDs;
+            }
+            catch (Exception e)
+            {
+                API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_EMPLOYEE_getOustandingProjects --> OUTPUT: Failed to get outstanding projects for employee {0}", INPUT_EmployeeID);
+                API_DATA_Logger.LogError(e, e.Message);
+                return OUTPUT_outstandingProjectIDs;
             }
         }
     }

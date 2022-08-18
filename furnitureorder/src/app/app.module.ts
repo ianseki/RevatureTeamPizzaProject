@@ -15,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/furniture/auth.service';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthService } from './services/furniture/auth.service';
     CartPageComponent,
     FurniturePageComponent,
     NotFoundComponent,
+    CheckoutPageComponent,
   ],
   imports: [
     BrowserModule,

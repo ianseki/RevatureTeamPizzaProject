@@ -46,5 +46,15 @@ namespace Project2_Server.Data
         //      If finds project corresponding to the order --> OUTPUT: returns array with project ids
         //          OR
         //      If not able find corresponding project --> OUTPUT: returns dummy array (-1)
+
+        Task<List<int>> LINKING_ASYNC_getFromProjectEmployeeLinkingTable(int INPUT_EmployeeID);
+        // FUNCTION:
+        //      Gets all linked outstanding projects corresponding to an employee
+        // PARAMETER: (int)
+        //      Employee ID
+        // OUTPUT: (bool)
+        //      If finds projects corresponding to the employee --> OUTPUT: returns array with order ids
+        //          OR
+        //      If not able find corresponding projects --> OUTPUT: returns dummy array (-1)
     }
 }

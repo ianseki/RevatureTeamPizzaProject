@@ -41,12 +41,12 @@ namespace Project2_Server.Model
             if (this.email == null || this.email == "") throw new ArgumentNullException(nameof(this.email));
             if (this.password == null || this.password == "") throw new ArgumentNullException(nameof(this.password));
 
-            if (Regex.IsMatch(this.first_name, @"\W") || Regex.IsMatch(this.first_name, @"\d"))
+            if (Regex.IsMatch(this.first_name, @"\W") || Regex.IsMatch(this.first_name, @"\d") || this.first_name.Length < 3)
             { 
                 throw new ArgumentException(nameof(this.first_name)); 
             }
 
-            if (Regex.IsMatch(this.last_name, @"\W") || Regex.IsMatch(this.last_name, @"\d"))
+            if (Regex.IsMatch(this.last_name, @"\W") || Regex.IsMatch(this.last_name, @"\d") || this.last_name.Length < 3)
             {
                 throw new ArgumentException(nameof(this.first_name));
             }
@@ -58,7 +58,7 @@ namespace Project2_Server.Model
 
             if (this.password.Length < 5)
             {
-                throw new ArgumentException(nameof(this.email) + " needs to at least be 5 characters");
+                throw new ArgumentException(nameof(this.password) + " needs to at least be 5 characters");
             }
         }
 

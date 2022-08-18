@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: API to Development Auto Push
+
+# Controls when the workflow will run
+on:
+  #push:
+  #  branches: 
+  #    API
+  # Will run every day at 0:25 UTC -8 
+  #schedule:
+  #  - cron: '25 8 * * *'
+  workflow_dispatch:
+  
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  my-job:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v2.4.2
+       with:
+         repository: '220705-UTA-NET/Team_Pizza_P2'
+         ref: 'API'
+     - name: Push API to Development
+       run: | 
+          gh pr create --base Development --body 'Daily merge' --head API --title 'Daily Merge Auto Run'

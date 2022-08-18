@@ -50,13 +50,13 @@
       "Project2_Server.API.DTO_OrderProject": {
         "Project2_Server.Model.DMODEL_Order Project2_Server.API.DTO_OrderProject::get_DMODEL_Order()": {
           "Lines": {
-            "8": 10
+            "8": 11
           },
           "Branches": []
         },
         "System.Collections.Generic.List`1<Project2_Server.Model.DMODEL_Project> Project2_Server.API.DTO_OrderProject::get_LIST_DMODEL_Projects()": {
           "Lines": {
-            "9": 8
+            "9": 9
           },
           "Branches": []
         },
@@ -64,11 +64,11 @@
           "Lines": {
             "22": 4,
             "23": 4,
-            "24": 26,
-            "25": 8,
-            "26": 8,
-            "27": 6,
-            "28": 2
+            "24": 31,
+            "25": 10,
+            "26": 10,
+            "27": 9,
+            "28": 3
           },
           "Branches": [
             {
@@ -77,7 +77,7 @@
               "EndOffset": 28,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 8
+              "Hits": 10
             },
             {
               "Line": 24,
@@ -85,7 +85,7 @@
               "EndOffset": 54,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 2
+              "Hits": 3
             }
           ]
         },
@@ -299,32 +299,34 @@
             "108": 0,
             "109": 0,
             "112": 4,
-            "116": 2,
-            "118": 2,
-            "119": 1,
-            "120": 1,
-            "121": 1,
+            "116": 3,
+            "118": 3,
+            "119": 2,
+            "120": 2,
+            "121": 2,
             "125": 1,
-            "129": 1,
-            "131": 1,
-            "133": 1,
+            "127": 9,
+            "128": 3,
+            "129": 3,
+            "131": 3,
+            "132": 0,
+            "133": 0,
             "134": 0,
-            "135": 0,
-            "136": 0,
-            "139": 1,
-            "143": 1,
-            "145": 5,
-            "146": 1,
-            "147": 1,
+            "137": 3,
+            "138": 3,
+            "141": 1,
+            "143": 9,
+            "144": 3,
+            "145": 3,
+            "146": 3,
             "148": 1,
             "150": 1,
             "152": 1,
-            "154": 2,
-            "155": 2,
-            "156": 2,
-            "157": 2,
-            "158": 2,
-            "160": 4
+            "153": 1,
+            "154": 1,
+            "155": 1,
+            "156": 1,
+            "158": 4
           },
           "Branches": [
             {
@@ -349,7 +351,7 @@
               "EndOffset": 272,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 1
+              "Hits": 2
             },
             {
               "Line": 118,
@@ -360,35 +362,51 @@
               "Hits": 1
             },
             {
-              "Line": 133,
-              "Offset": 478,
-              "EndOffset": 480,
+              "Line": 127,
+              "Offset": 608,
+              "EndOffset": 355,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 3
+            },
+            {
+              "Line": 131,
+              "Offset": 519,
+              "EndOffset": 521,
               "Path": 0,
               "Ordinal": 4,
               "Hits": 0
             },
             {
-              "Line": 133,
-              "Offset": 478,
-              "EndOffset": 530,
+              "Line": 131,
+              "Offset": 519,
+              "EndOffset": 571,
               "Path": 1,
               "Ordinal": 5,
-              "Hits": 1
+              "Hits": 3
             },
             {
-              "Line": 145,
-              "Offset": 854,
-              "EndOffset": 702,
-              "Path": 1,
-              "Ordinal": 7,
-              "Hits": 1
-            },
-            {
-              "Line": 145,
-              "Offset": 854,
-              "EndOffset": 859,
+              "Line": 127,
+              "Offset": 608,
+              "EndOffset": 613,
               "Path": 0,
               "Ordinal": 6,
+              "Hits": 1
+            },
+            {
+              "Line": 143,
+              "Offset": 956,
+              "EndOffset": 804,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 3
+            },
+            {
+              "Line": 143,
+              "Offset": 956,
+              "EndOffset": 961,
+              "Path": 0,
+              "Ordinal": 8,
               "Hits": 1
             }
           ]
@@ -397,42 +415,42 @@
       "Project2_Server.API.Controllers.CONTROLLER_Customer/<API_ASYNC_CUSTOMER_getOrderHistory>d__9": {
         "System.Void Project2_Server.API.Controllers.CONTROLLER_Customer/<API_ASYNC_CUSTOMER_getOrderHistory>d__9::MoveNext()": {
           "Lines": {
+            "163": 0,
             "165": 0,
+            "166": 0,
             "167": 0,
-            "168": 0,
-            "169": 0,
+            "170": 0,
+            "171": 0,
             "172": 0,
             "173": 0,
-            "174": 0,
             "175": 0,
-            "177": 0,
-            "178": 0,
+            "176": 0,
+            "180": 0,
             "182": 0,
-            "184": 0,
-            "185": 0,
+            "183": 0,
+            "186": 0,
+            "187": 0,
             "188": 0,
-            "189": 0,
             "190": 0,
-            "192": 0,
-            "193": 0,
+            "191": 0,
+            "195": 0,
+            "196": 0,
             "197": 0,
             "198": 0,
-            "199": 0,
             "200": 0,
             "202": 0,
+            "203": 0,
             "204": 0,
             "205": 0,
-            "206": 0,
             "207": 0,
-            "209": 0,
+            "208": 0,
             "210": 0,
-            "212": 0,
-            "213": 0,
-            "214": 0
+            "211": 0,
+            "212": 0
           },
           "Branches": [
             {
-              "Line": 172,
+              "Line": 170,
               "Offset": 110,
               "EndOffset": 112,
               "Path": 0,
@@ -440,7 +458,7 @@
               "Hits": 0
             },
             {
-              "Line": 172,
+              "Line": 170,
               "Offset": 110,
               "EndOffset": 181,
               "Path": 1,
@@ -448,7 +466,7 @@
               "Hits": 0
             },
             {
-              "Line": 188,
+              "Line": 186,
               "Offset": 359,
               "EndOffset": 361,
               "Path": 0,
@@ -456,7 +474,7 @@
               "Hits": 0
             },
             {
-              "Line": 188,
+              "Line": 186,
               "Offset": 359,
               "EndOffset": 434,
               "Path": 1,
@@ -464,7 +482,7 @@
               "Hits": 0
             },
             {
-              "Line": 197,
+              "Line": 195,
               "Offset": 1100,
               "EndOffset": 446,
               "Path": 1,
@@ -472,7 +490,7 @@
               "Hits": 0
             },
             {
-              "Line": 204,
+              "Line": 202,
               "Offset": 1021,
               "EndOffset": 797,
               "Path": 1,
@@ -480,7 +498,7 @@
               "Hits": 0
             },
             {
-              "Line": 204,
+              "Line": 202,
               "Offset": 1021,
               "EndOffset": 1026,
               "Path": 0,
@@ -488,7 +506,7 @@
               "Hits": 0
             },
             {
-              "Line": 197,
+              "Line": 195,
               "Offset": 1100,
               "EndOffset": 1105,
               "Path": 0,
@@ -1803,28 +1821,28 @@
       "Project2_Server.Data.SQL_Project/<PROJECT_ASYNC_changeProjectStatus>d__6": {
         "System.Void Project2_Server.Data.SQL_Project/<PROJECT_ASYNC_changeProjectStatus>d__6::MoveNext()": {
           "Lines": {
-            "95": 0,
+            "94": 0,
+            "96": 0,
             "97": 0,
             "98": 0,
-            "99": 0,
-            "101": 0,
+            "100": 0,
+            "102": 0,
             "103": 0,
             "104": 0,
-            "105": 0,
-            "107": 0,
+            "106": 0,
+            "108": 0,
             "109": 0,
             "110": 0,
-            "111": 0,
+            "112": 0,
             "113": 0,
             "114": 0,
             "115": 0,
             "116": 0,
-            "117": 0,
-            "119": 0
+            "118": 0
           },
           "Branches": [
             {
-              "Line": 95,
+              "Line": 94,
               "Offset": 26,
               "EndOffset": 37,
               "Path": 0,
@@ -1832,7 +1850,7 @@
               "Hits": 0
             },
             {
-              "Line": 95,
+              "Line": 94,
               "Offset": 26,
               "EndOffset": 195,
               "Path": 1,
@@ -1856,13 +1874,13 @@
             "77": 0,
             "78": 0,
             "79": 0,
-            "81": 0,
+            "80": 0,
+            "83": 0,
             "84": 0,
-            "85": 0,
+            "86": 0,
             "87": 0,
             "88": 0,
-            "89": 0,
-            "92": 0
+            "91": 0
           },
           "Branches": [
             {
@@ -2662,19 +2680,19 @@
       "Project2_Server.Model.DMODEL_Project": {
         "System.Int32 Project2_Server.Model.DMODEL_Project::get_project_id()": {
           "Lines": {
-            "6": 33
+            "6": 35
           },
           "Branches": []
         },
         "System.Int32 Project2_Server.Model.DMODEL_Project::get_item_id()": {
           "Lines": {
-            "7": 35
+            "7": 42
           },
           "Branches": []
         },
         "System.Boolean Project2_Server.Model.DMODEL_Project::get_completion_status()": {
           "Lines": {
-            "8": 17
+            "8": 15
           },
           "Branches": []
         },
@@ -2690,11 +2708,11 @@
         },
         "System.Void Project2_Server.Model.DMODEL_Project::DMODEL_PROJECT_verifyData()": {
           "Lines": {
-            "28": 8,
-            "29": 10,
-            "30": 6,
-            "31": 6,
-            "32": 6
+            "28": 10,
+            "29": 11,
+            "30": 9,
+            "31": 9,
+            "32": 9
           },
           "Branches": [
             {
@@ -2703,7 +2721,7 @@
               "EndOffset": 21,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 2
+              "Hits": 1
             },
             {
               "Line": 29,
@@ -2711,7 +2729,7 @@
               "EndOffset": 32,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 6
+              "Hits": 9
             },
             {
               "Line": 30,
@@ -2727,7 +2745,7 @@
               "EndOffset": 63,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 6
+              "Hits": 9
             },
             {
               "Line": 31,
@@ -2743,24 +2761,24 @@
               "EndOffset": 86,
               "Path": 1,
               "Ordinal": 5,
-              "Hits": 6
+              "Hits": 9
             }
           ]
         },
         "System.Void Project2_Server.Model.DMODEL_Project::.ctor()": {
           "Lines": {
-            "11": 36
+            "11": 39
           },
           "Branches": []
         },
         "System.Void Project2_Server.Model.DMODEL_Project::.ctor(System.Int32,System.Int32,System.Boolean)": {
           "Lines": {
-            "12": 5,
-            "13": 5,
-            "14": 5,
-            "15": 5,
-            "16": 5,
-            "17": 5
+            "12": 3,
+            "13": 3,
+            "14": 3,
+            "15": 3,
+            "16": 3,
+            "17": 3
           },
           "Branches": []
         }

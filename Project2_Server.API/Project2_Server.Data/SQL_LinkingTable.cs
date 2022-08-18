@@ -143,23 +143,125 @@ namespace Project2_Server.Data
                 return OUTPUT_Projects;
             }
         }
-
-        public async Task LINKING_ASYNC_addProjectEmployeeLinkingTable()
+        
+        public async Task<bool> LINKING_ASYNC_addToProjectEmployeeLinkingTable_Chair(int INPUT_ProjectID)
         {
-            //int max = 0;
-            //int project_id = 0;
+            // Giving test case
+            bool check = false;
 
-            SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
+            // If project_id is valid run SQL command
+            if (INPUT_ProjectID > 0)
+            {
+                // Create connection
+                SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
 
-            await DB_connection.OpenAsync();
+                // Open connection
+                await DB_connection.OpenAsync();
 
-            SqlCommand cmd = new SqlCommand("AssignProjectToEmployee", DB_connection);
+                // Create SQL command
+                SqlCommand cmd = new SqlCommand("AssignProjectToEmployee", DB_connection);
             
-            cmd.CommandType = CommandType.StoredProcedure;
+                // Allow SQL to know "AssignedProjectToEmployee" is a stored procedure
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(
-                    new SqlParameter("@max", max),
-                    new SqlParameter("@projectNum", project_id));
+                // Hard coding chair parameters for stored procedure
+                int max = 1;
+                int project_id = INPUT_ProjectID;
+
+                // Adding parameters to stored procedure
+                cmd.Parameters.Add(new SqlParameter("@max", max));
+                cmd.Parameters.Add(new SqlParameter("@projectNum", project_id));
+
+                // Execute command
+                await cmd.ExecuteNonQueryAsync();
+                
+                // Return test case success
+                check = true;
+                return check;
+            }
+
+            // Return test case fail
+            return check;
+        }
+
+        public async Task<bool> LINKING_ASYNC_addToProjectEmployeeLinkingTable_Table(int INPUT_ProjectID)
+        {
+            // Giving test case
+            bool check = false;
+
+            // If project_id is valid run SQL command
+            if (INPUT_ProjectID > 0)
+            {
+                // Create connection
+                SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
+
+                // Open connection
+                await DB_connection.OpenAsync();
+
+                // Create SQL command
+                SqlCommand cmd = new SqlCommand("AssignProjectToEmployee", DB_connection);
+
+                // Allow SQL to know "AssignedProjectToEmployee" is a stored procedure
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Hard coding table parameters for stored procedure
+                int max = 2;
+                int project_id = INPUT_ProjectID;
+
+                // Adding parameters to stored procedure
+                cmd.Parameters.Add(new SqlParameter("@max", max));
+                cmd.Parameters.Add(new SqlParameter("@projectNum", project_id));
+
+                // Execute command
+                await cmd.ExecuteNonQueryAsync();
+
+                // Return test case success
+                check = true;
+                return check;
+            }
+
+            // Return test case fail
+            return check;
+        }
+
+        public async Task<bool> LINKING_ASYNC_addToProjectEmployeeLinkingTable_Desk(int INPUT_ProjectID)
+        {
+            // Giving test case
+            bool check = false;
+
+            // If project_id is valid run SQL command
+            if (INPUT_ProjectID > 0)
+            {
+                // Create connection
+                SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
+
+                // Open connection
+                await DB_connection.OpenAsync();
+
+                // Create SQL command
+                SqlCommand cmd = new SqlCommand("AssignProjectToEmployee", DB_connection);
+
+                // Allow SQL to know "AssignedProjectToEmployee" is a stored procedure
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Hard coding desk parameters for stored procedure
+                int max = 4;
+                int project_id = INPUT_ProjectID;
+
+                // Adding parameters to stored procedure
+                cmd.Parameters.Add(new SqlParameter("@max", max));
+                cmd.Parameters.Add(new SqlParameter("@projectNum", project_id));
+
+                // Execute command
+                await cmd.ExecuteNonQueryAsync();
+
+                // Return test case success
+                check = true;
+                return check;
+            }
+
+            // Return test case fail
+            return check;
         }
 
         public async Task<List<int>> LINKING_ASYNC_getFromProjectEmployeeLinkingTable(int INPUT_EmployeeID)

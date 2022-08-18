@@ -47,6 +47,19 @@ namespace Project2_Server.Data
         //          OR
         //      If not able find corresponding project --> OUTPUT: returns dummy array (-1)
 
+        Task<bool> LINKING_ASYNC_addToProjectEmployeeLinkingTable_Chair(int INPUT_ProjectID);
+        Task<bool> LINKING_ASYNC_addToProjectEmployeeLinkingTable_Table(int INPUT_ProjectID);
+        Task<bool> LINKING_ASYNC_addToProjectEmployeeLinkingTable_Desk(int INPUT_ProjectID);
+        // FUNCTION:
+        //      Adds 1 employee with the least amount of jobs to project.
+        //      Loops through as many times as the employees needed for item.
+        // PARAMETER: (int)
+        //      Project ID
+        // OUTPUT: (bool)
+        //      If INPUT_ProjectID is good then run SQL command and return true
+        //          OR
+        //      If not return false
+
         Task<List<int>> LINKING_ASYNC_getFromProjectEmployeeLinkingTable(int INPUT_EmployeeID);
         // FUNCTION:
         //      Gets all linked outstanding projects corresponding to an employee

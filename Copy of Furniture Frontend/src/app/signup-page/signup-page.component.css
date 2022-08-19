@@ -1,9 +1,10 @@
 .card{
+  background-color: beige;
   margin-top: 15px;
   border: 1px solid black;
   width: 550px;
   padding: 45px;
   position: absolute;
-  top: 20%;
+  top: 25%;
   left: 30%;
 }

@@ -16,8 +16,7 @@ export class FurniturePageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private furnitureService: FurnitureService,
     private cartService: CartService,
-    private router: Router
-  ) {
+    private router: Router) {
     activatedRoute.params.subscribe((params) => {
       if (params['id'])
         this.furniture = furnitureService.getFurnitureById(params['id']);

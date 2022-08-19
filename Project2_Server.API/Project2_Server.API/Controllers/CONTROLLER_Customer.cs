@@ -170,7 +170,7 @@ namespace Project2_Server.API.Controllers
             }
             catch (Exception e)
             {
-                API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewOrder --> OUTPUT: Failed to create new customer");
+                API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewOrder --> OUTPUT: Failed to create new order for customer {0}", INPUT_CustomerID);
                 API_DATA_Logger.LogError(e, e.Message);
                 return false;
             }

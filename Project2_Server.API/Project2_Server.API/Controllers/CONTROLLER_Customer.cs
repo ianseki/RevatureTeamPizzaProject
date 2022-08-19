@@ -170,7 +170,7 @@ namespace Project2_Server.API.Controllers
             }
             catch (Exception e)
             {
-                API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewOrder --> OUTPUT: Failed to create new customer");
+                API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewOrder --> OUTPUT: Failed to create new order for customer {0}", INPUT_CustomerID);
                 API_DATA_Logger.LogError(e, e.Message);
                 return false;
             }
@@ -217,12 +217,19 @@ namespace Project2_Server.API.Controllers
                 TEMP_DTO_OrderProject.DMODEL_Order = await API_PROP_INTERFACE_Order.ORDER_ASYNC_getOrderData(WORK_LIST_OrderIDs[i]);
 
                 List<int> WORK_LIST_ProjectIDs = await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_getFromOrderProjectLinkingTable(WORK_LIST_OrderIDs[i]);
+                List<DMODEL_Project> WORK_LIST_Projects = new List<DMODEL_Project>();
 
                 for (int j = 0; j < WORK_LIST_ProjectIDs.Count; j++)
                 {
-                    TEMP_DTO_OrderProject.LIST_DMODEL_Projects.Add(await API_PROP_INTERFACE_Project.PROJECT_ASYNC_getProjectData(WORK_LIST_ProjectIDs[j]));
+                    DMODEL_Project TEMP_Project = await API_PROP_INTERFACE_Project.PROJECT_ASYNC_getProjectData(WORK_LIST_ProjectIDs[j]);
+                    //API_DATA_Logger.LogInformation(TEMP_Project.project_id + " " + TEMP_Project.item_id + " " + TEMP_Project.completion_status);
+                    if (TEMP_Project.project_id != -1)
+                    {
+                        WORK_LIST_Projects.Add(TEMP_Project);
+                    }
                 }
 
+                TEMP_DTO_OrderProject.LIST_DMODEL_Projects = WORK_LIST_Projects;
                 OUTPUT_DTO_OrderProject.Add(TEMP_DTO_OrderProject);
             }
 

@@ -6,33 +6,31 @@
           <h1>WoodCutters Union</h1>
           <h5>Please Register</h5><hr>
 
-        </div> 
+        <!-- </div>  -->
  <!-- [formGroup]="signupForm" (ngSubmit)="signUp()" add inside form --> 
-        <form>
+        <!-- </div> -->
+        <form (ngSubmit)="FUNC_NewUser()" [formGroup]="NewUserData">
           <div class="mb-3">
-            <label class="form-label">First Name</label>
-            <input formControlName="firstname" placeholder="Enter First Name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            
+            <label> Firstname </label>
+            <input formControlName="firstname" placeholder="Enter Firstname" type="string" class="form-control" id="exampleInputFirstname">    
           </div>
           <div class="mb-3">
-            <label class="form-label">Last Name</label>
-            <input formControlName="lastname" placeholder="Enter Last Name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            
+            <label> Lastname </label>
+            <input formControlName="lastname" placeholder="Enter Lastname" type="string" class="form-control" id="exampleInputLastname">    
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input formControlName="email" placeholder="Enter Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            
+            <label> Email </label>
+            <input formControlName="email" placeholder="Enter Correct Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">    
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input formControlName="password" placeholder="Enter Password"  type="password" class="form-control" id="exampleInputPassword1">
+            <label >Password </label>
+            <input formControlName="password" placeholder="Enter Password" type="password" class="form-control" id="exampleInputPassword1">
           </div>
-          <button type="submit" class="btn btn-primary">SignUp</button>
+          <button type="submit" class="btn btn-primary">Login</button>
         </form>
+
         <a style="color: blue; margin-top:10px;" routerLink="/login">Already Have an Account? Please login</a>
 
+        </div>
       </div>
     </div>
-  </div>
-</div> 

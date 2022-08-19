@@ -9,17 +9,17 @@
         </div>
         <form (ngSubmit)="FUNC_LogIn()" [formGroup]="LoginData">
           <div class="mb-3">
-            <label> Email </label>>
+            <label> Email </label>
             <input formControlName="email" placeholder="Enter Correct Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">    
           </div>
           <div class="mb-3">
-            <label >Password </label>]
+            <label >Password </label>
             <input formControlName="password" placeholder="Enter Correct Password" type="password" class="form-control" id="exampleInputPassword1">
           </div>
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary">SignUp</button>
         </form>
 
-        <a style="color: blue; margin-top:10px;" routerLink="/signup">Create a New Account!</a>
+        <a style="color: blue; margin-top:10px;" routerLink="/register">Create a New Account!</a>
 
       </div>
     </div>

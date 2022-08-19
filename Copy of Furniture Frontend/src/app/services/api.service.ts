@@ -41,7 +41,7 @@ export class APIService {
   }
 
   public CUSTOMER_GetOrderHistory(INPUT_CustomerID: number): Observable<any>{
-    const API_URL = 'https://woodcutters-union-team-pizza.azurewebsites.net/API/Customer/CreateNewCustomer';
+    const API_URL = 'https://woodcutters-union-team-pizza.azurewebsites.net/API/Customer/GetOrderHistory';
     const API_Parameters = new HttpParams()
       .set("INPUT_CustomerID", INPUT_CustomerID)
 

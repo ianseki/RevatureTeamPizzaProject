@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Checkout</h1>
+  <!-- <div *ngFor="let cartItem of cart" class="container">
+    <ul>
+      <li>{{cartItem.name}}</li>
+      <li>{{cartItem.price}}</li>
+      <li>{{cartItem.timeFrame}}</li>
+    </ul>
+  </div>     -->
+
+  <!-- <li *ngFor = "let cartItem of cart">{{cartItem.name}}</li> -->
+
+  <button class="btn-makepayment" (click)="makePayment()">Make Payment</button>
+  <button class="btn-cancel" (click)="cancel()">Cancel Order</button>
+
+  <div class="last">
+    <h5>Transaction Has Been Completed!</h5>
+    <h6>Thank you for your business. Hope to see you again!</h6>
+    <!-- <div class="order-list">
+      <div *ngIf="cart && cart.items.length > 0" class="container">
+        <ul>
+          <li>{{cartItem.name}}</li>
+          <li>{{cartItem.price}}</li>
+          <li>{{cartItem.timeFrame}}</li>
+        </ul>
+    </div> -->
+  </div>
+  <button (click)="Homepage()">Shop for More!</button>
+      
+</div>

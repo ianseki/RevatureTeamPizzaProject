@@ -1,5 +1,5 @@
 #Stage 1
-FROM node:18-alpine as build-step
+FROM node:latest as build-step
 
 RUN mkdir -p /app
 
@@ -13,7 +13,7 @@ COPY . /app
 
 RUN npm run build --prod
 # Stage 2
-FROM nginx:1.22.0-alpine
+FROM nginx:latest
 
 COPY --from=build-step /app/dist/furnitureorder /usr/share/nginx/html
 

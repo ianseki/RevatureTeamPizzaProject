@@ -66,20 +66,13 @@ namespace Project2_Server.Data
             SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
             await DB_connection.OpenAsync();
 
-            string DB_commandText = "INSERT INTO [PROJECT2].[Project] (item_id, completion_status) VALUES (@INPUT_ItemID, INPUT_Status) SELECT SCOPE_IDENTITY();";
+            string DB_commandText = "INSERT INTO [PROJECT2].[Project] (item_id, completion_status) VALUES (@INPUT_ItemID, @INPUT_Status) SELECT MAX([project_id]) FROM [PROJECT2].[Project];";
 
             using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
             DB_command.Parameters.AddWithValue("@INPUT_ItemID", INPUT_DMODEL_Project.item_id);
             DB_command.Parameters.AddWithValue("@INPUT_Status", INPUT_DMODEL_Project.completion_status);
 
             using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
-
-            int WORK_generatedProjectID = DB_reader.GetInt32(0);
-
-            if (WORK_generatedProjectID == -1)
-            {
-                return -1;
-            }
 
             if (DB_reader.HasRows == false)
             {
@@ -88,7 +81,8 @@ namespace Project2_Server.Data
             }
             else
             {
-                WORK_generatedProjectID = DB_reader.GetInt32(0);
+                await DB_reader.ReadAsync();
+                int WORK_generatedProjectID = DB_reader.GetInt32(0);
 
                 API_PROP_logger.LogInformation("EXECUTED: PROJECT_ASYNC_createNewProject --> OUTPUT: Succesfully created new project {0}", WORK_generatedProjectID);
                 await DB_connection.CloseAsync();

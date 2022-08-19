@@ -66,10 +66,9 @@ namespace Project2_Server.Data
             SqlConnection DB_connection = new SqlConnection(DB_PROP_connectionString);
             await DB_connection.OpenAsync();
 
-            string DB_commandText = "INSERT INTO [PROJECT2].[Order] (time_of_order, status) VALUES (@INPUT_TimeOfOrder, INPUT_Status) SELECT SCOPE_IDENTITY();";
+            string DB_commandText = "INSERT INTO [PROJECT2].[Order] (status) VALUES (@INPUT_Status) SELECT MAX([order_id]) FROM [PROJECT2].[Order];";
 
             using SqlCommand DB_command = new SqlCommand(DB_commandText, DB_connection);
-            DB_command.Parameters.AddWithValue("@INPUT_TimeOfOrder", INPUT_DMODEL_Order.time_of_order);
             DB_command.Parameters.AddWithValue("@INPUT_Status", INPUT_DMODEL_Order.status);
 
             using SqlDataReader DB_reader = await DB_command.ExecuteReaderAsync();
@@ -81,6 +80,7 @@ namespace Project2_Server.Data
             }
             else
             {
+                await DB_reader.ReadAsync();
                 int WORK_generatedOrderID = DB_reader.GetInt32(0);
 
                 API_PROP_logger.LogInformation("EXECUTED: ORDER_ASYNC_createNewOrder --> OUTPUT: Succesfully created new order {0}", WORK_generatedOrderID);

@@ -48,7 +48,7 @@ namespace Project2_Server.Model
 
             if (Regex.IsMatch(this.last_name, @"\W") || Regex.IsMatch(this.last_name, @"\d") || this.last_name.Length < 3)
             {
-                throw new ArgumentException(nameof(this.first_name));
+                throw new ArgumentException(nameof(this.last_name));
             }
 
             if (!(Regex.IsMatch(this.email, @"@")) || !(Regex.IsMatch(this.email, @"\.")))

@@ -123,6 +123,7 @@ namespace Project2_Server.API.Controllers
 
                 // Adds All Projects into [Project2].[Project] Table
                 List<int> WORK_generatedProjectIDs = new List<int>();
+                List<int> WORK_generatedProjectTypes = new List<int>();
 
                 foreach (DMODEL_Project TEMP_Project in INPUT_DTO_OrderProject.LIST_DMODEL_Projects)
                 {
@@ -135,15 +136,33 @@ namespace Project2_Server.API.Controllers
                     }
 
                     WORK_generatedProjectIDs.Add(TEMP_generatedProjectID);
+                    WORK_generatedProjectTypes.Add(TEMP_Project.item_id);
                 }
 
                 // Adds corresponding connection to each linking table
                 await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_addToCustomerOrderLinkingTable(INPUT_CustomerID, WORK_generatedOrderID);
 
-                foreach (int TEMP_ProjectID in WORK_generatedProjectIDs)
+                for (int i = 0; i < WORK_generatedProjectIDs.Count; i++)
                 {
-                    await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_addToOrderProjectLinkingTable(WORK_generatedOrderID, TEMP_ProjectID);
+                    await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_addToOrderProjectLinkingTable(WORK_generatedOrderID, WORK_generatedProjectIDs[i]);
+                    switch(WORK_generatedProjectTypes[i])
+                    {
+                        case 1:
+                            await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_addToProjectEmployeeLinkingTable_Chair(WORK_generatedProjectIDs[i]);
+                            break;
+                        case 2:
+                            await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_addToProjectEmployeeLinkingTable_Table(WORK_generatedProjectIDs[i]);
+                            break;
+                        case 3:
+                            await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_addToProjectEmployeeLinkingTable_Desk(WORK_generatedProjectIDs[i]);
+                            break;
+                    }
                 }
+
+                //foreach (int TEMP_ProjectID in WORK_generatedProjectIDs)
+                //{
+                //    await API_PROP_INTERFACE_LinkingTable.LINKING_ASYNC_addToOrderProjectLinkingTable(WORK_generatedOrderID, TEMP_ProjectID);
+                //}
 
                 API_DATA_Logger.LogInformation("EXECUTED: API_ASYNC_CUSTOMER_createNewOrder --> OUTPUT: Successfully created new order {0} for customer {1}", WORK_generatedOrderID, INPUT_CustomerID);
 

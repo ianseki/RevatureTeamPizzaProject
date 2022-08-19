@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../shared/user.service';
+import { FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
+import { APIService } from '../services/api.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -8,37 +10,50 @@ import { UserService } from '../shared/user.service';
   templateUrl: './signup-page.component.html',
   styleUrls: ['./signup-page.component.css']
 })
+
 export class SignupPageComponent implements OnInit {
-  constructor(public service: UserService, private toastr: ToastrService){ }
 
-  ngOnInit(){
-    this.service.formModel.reset();
-  }
+  NewUserData= new FormGroup({
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    email: new FormControl(''),
+    password : new FormControl('')
+  })
 
-  onSubmit(){
-    this.service.register().subscribe(
-      (res:any)=> {
-        if (res.succeeded) {
-          this.service.formModel.reset();
-          this.toastr.success('Registration Successful!');
-        } else {
-          res.errors.forEach((element: { description: any; }) => {
-            this.toastr.error(element.description, 'Registration Failed');
-          }
-          );
-        }
-      },
-      err => {
-        console.log(err);
+  NewUserResponse: any;
+
+  CreateUserResponse: any;
+
+  constructor(private API: APIService, private Router: Router) { }
+
+  ngOnInit(){ }
+
+  FUNC_NewUser(){
+    const STRING_Firstname: string = `${this.NewUserData.value.firstname}`
+    const STRING_Lastname: string = `${this.NewUserData.value.lastname}`
+    const STRING_Email: string = `${this.NewUserData.value.email}`;
+    const STRING_Password: string = `${this.NewUserData.value.password}`;
+
+    this.API.CUSTOMER_CreateNewUser(STRING_Firstname, STRING_Lastname, STRING_Email, STRING_Password).subscribe((API_Response: boolean) =>
+    {
+      alert("API_Response: " + API_Response)
+
+      this.NewUserResponse = API_Response;
+
+      if (this.NewUserResponse == true)
+      {
+        alert("Successfully Created New User");
+        this.Router.navigate(['login'])
       }
-
-    )
+      else
+      {
+        alert("Failed To Create New User, Please Try Again")
+      }
+    });
   }
-
-
-
 
 }
+
 
 
 

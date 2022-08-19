@@ -22,9 +22,7 @@ export class LoginPageComponent implements OnInit{
 
   constructor(private API: APIService, private Router: Router) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
   FUNC_LogIn (){
     const STRING_Username: string = `${this.LoginData.value.email}`;
@@ -33,7 +31,7 @@ export class LoginPageComponent implements OnInit{
     {
       this.LoginReponse = API_Response;
 
-      if(this.LoginReponse === "-1"){
+      if(this.LoginReponse == -1){
         alert("LOGIN FAILED, YOU NEED HELP");
       }
       else{

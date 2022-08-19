@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'search/:searchItem', component: HomeComponent },
   { path: 'furniture/:id', component: FurniturePageComponent },
   { path: 'cart-page', component: CartPageComponent },
-  { path: 'checkout', component: CheckoutPageComponent}
+  { path: 'checkout/:totalCount/:totalCost', component: CheckoutPageComponent}
   
   
 ];

@@ -14,10 +14,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, SearchComponent, CartPageComponent, FurniturePageComponent, NotFoundComponent, LoginPageComponent, SignupPageComponent, UserPageComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent, SearchComponent, CartPageComponent, FurniturePageComponent, NotFoundComponent, LoginPageComponent, SignupPageComponent, UserPageComponent, CheckoutPageComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule,ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,8 @@
 #Stage 1
 FROM node:18-alpine as build-step
 
+EXPOSE 80
+
 RUN mkdir -p /app
 
 WORKDIR /app
